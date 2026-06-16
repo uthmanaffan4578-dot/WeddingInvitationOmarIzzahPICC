@@ -13,12 +13,12 @@
 
     <style>
         :root {
-            --bg-color: #fdf2f2;
-            --maroon: #7b2c35;
-            --accent-pink: #d4a5a5;
-            --light-pink: #fce4ec;
+            --bg-color: #fbe5e5;
+            --maroon: #80333c;
+            --accent-pink: #f08090;
+            --light-pink: #fdf2f2;
             --white: #ffffff;
-            --text-dark: #4a4a4a;
+            --text-dark: #4a3b32;
         }
 
         * {
@@ -29,7 +29,7 @@
         }
 
         body {
-            background-color: #f0f0f0; /* Desktop background */
+            background-color: #f5f5f5; /* Desktop background */
             font-family: 'Montserrat', sans-serif;
             color: var(--text-dark);
             display: flex;
@@ -51,13 +51,12 @@
             padding-bottom: 80px;
         }
 
-        /* Sticky Nav */
+        /* Sticky Nav Bar (Warna maroon asal Canva) */
         .navbar {
             position: sticky;
             top: 0;
             width: 100%;
-            background: rgba(123, 44, 53, 0.9);
-            backdrop-filter: blur(5px);
+            background: var(--maroon);
             display: flex;
             justify-content: space-around;
             padding: 12px 5px;
@@ -68,7 +67,7 @@
             background: var(--accent-pink);
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
@@ -85,67 +84,84 @@
         h1, h2 { font-family: 'Great Vibes', cursive; color: var(--maroon); }
         .serif { font-family: 'Playfair Display', serif; }
 
-        /* Hero / Envelope Section */
+        /* Hero / Envelope Section (Fix text size) */
         .hero {
-            height: 90vh;
+            min-height: 75vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: linear-gradient(rgba(253, 242, 242, 0.8), rgba(253, 242, 242, 0.8)), url('background-pattern.png');
+            align-items: center;
+            padding: 20px;
         }
 
-        .hero h3 { font-size: 0.8rem; letter-spacing: 2px; color: var(--maroon); margin-bottom: 20px; }
-        .hero h1 { font-size: 4rem; margin: 10px 0; }
-        .hero p { margin-top: 20px; font-weight: 600; color: var(--maroon); }
+        .hero h3 { font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dark); margin-bottom: 20px; font-weight: 400; }
+        .hero h1 { font-size: 3rem; margin: 10px 0; font-weight: 400; font-family: 'Great Vibes', cursive; }
+        .hero p { margin-top: 20px; font-weight: 600; color: var(--text-dark); }
 
-        /* Couple Photo Section (Staggered) */
+        /* Couple Photo Section (Fix Staggered Height & Overlap) */
         .couple-section {
             position: relative;
-            height: 480px;
-            margin-top: 20px;
+            height: 380px;
+            margin: 30px 0;
         }
 
         .photo-frame {
             position: absolute;
-            width: 220px;
-            height: 280px;
-            border: 8px solid white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            overflow: hidden;
+            width: 160px;
+            background: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+            text-align: center;
         }
 
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        /* Set default placeholder height sementara gambar takde biar tak lari */
+        .photo-frame .img-placeholder {
+            width: 100%;
+            height: 160px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #888;
+        }
+
+        .photo-frame img { width: 100%; height: 160px; object-fit: cover; display: block; }
 
         .frame-bride { top: 0; left: 20px; z-index: 2; }
-        .frame-groom { bottom: 20px; right: 20px; z-index: 1; }
+        .frame-groom { bottom: 0; right: 20px; z-index: 1; }
 
         .name-label {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
             color: var(--maroon);
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 11px;
+            line-height: 1.3;
         }
 
         /* Countdown */
         .countdown-container {
             background: white;
-            padding: 30px 10px;
-            margin: 20px;
+            padding: 20px 10px;
+            margin: 20px 0;
             border-radius: 15px;
             display: flex;
             justify-content: space-around;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
         }
 
         .cd-item { text-align: center; }
-        .cd-number { display: block; font-size: 1.5rem; font-weight: bold; color: var(--maroon); }
-        .cd-label { font-size: 0.7rem; color: #888; text-transform: uppercase; }
+        .cd-number { display: block; font-size: 1.8rem; font-weight: bold; color: var(--maroon); }
+        .cd-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
 
         /* Modals */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(3px);
             z-index: 2000;
             display: none;
             justify-content: center;
@@ -156,12 +172,12 @@
         .modal-content {
             background: var(--bg-color);
             width: 100%;
-            max-width: 400px;
-            padding: 30px;
-            border-radius: 20px;
+            max-width: 350px;
+            padding: 30px 20px;
+            border-radius: 25px;
             position: relative;
             text-align: center;
-            transform: scale(0.7);
+            transform: scale(0.8);
             transition: 0.3s ease;
         }
 
@@ -170,22 +186,22 @@
 
         .close-modal {
             position: absolute;
-            top: 15px; right: 20px;
-            font-size: 24px;
+            top: 15px; left: 20px;
+            font-size: 20px;
             color: var(--maroon);
             cursor: pointer;
         }
 
-        .qr-img { width: 200px; height: 200px; margin: 20px auto; display: block; }
+        .qr-img { width: 180px; height: 180px; margin: 20px auto; display: block; }
         .contact-row { margin: 15px 0; font-weight: 600; color: var(--maroon); border-bottom: 1px solid #eee; padding-bottom: 5px; }
 
         /* Music Button */
         #music-toggle {
             position: fixed;
             bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
+            right: calc(50% - 200px);
+            width: 45px;
+            height: 45px;
             background: var(--maroon);
             color: white;
             border-radius: 50%;
@@ -193,31 +209,32 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             z-index: 1500;
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        @media (max-width: 450px) {
+            #music-toggle { right: 20px; }
         }
 
         /* Itinerary Timeline */
-        .timeline { margin: 30px 0; text-align: left; padding-left: 40px; border-left: 2px solid var(--accent-pink); position: relative; }
-        .timeline-item { margin-bottom: 30px; position: relative; }
+        .timeline { margin: 25px auto; max-width: 320px; text-align: left; padding-left: 30px; border-left: 1px solid var(--maroon); position: relative; }
+        .timeline-item { margin-bottom: 25px; position: relative; }
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: -48px; top: 5px;
-            width: 15px; height: 15px;
+            left: -36px; top: 5px;
+            width: 11px; height: 11px;
             background: var(--maroon);
             border-radius: 50%;
+            border: 2px solid var(--bg-color);
+            box-shadow: 0 0 0 2px var(--maroon);
         }
-        .time { font-weight: bold; color: var(--maroon); }
+        .time { font-weight: bold; color: var(--maroon); display: inline-block; width: 80px; font-size: 14px; }
+        .event { display: inline-block; vertical-align: top; max-width: 200px; font-size: 13px; }
+        .location-link { color: var(--text-dark); text-decoration: underline; font-weight: 600; font-size: 14px; }
     </style>
 </head>
 <body>
@@ -233,80 +250,87 @@
         </nav>
 
         <!-- Hero Section -->
-        <section class="hero">
-            <div data-aos="fade-up">
-                <h3>YOU'RE INVITED TO A VERY SPECIAL EVENT CELEBRATING</h3>
-                <h1>Omar & Izzah</h1>
-                <p class="serif">SATURDAY 18 JULY, 2026<br>11AM - 4.00PM</p>
-                <p style="text-decoration: underline;">DEWAN IMPIAN UNGGUL, SUNGAI PETANI, KEDAH</p>
-            </div>
+        <section class="hero" data-aos="fade-up" data-aos-duration="1200">
+            <h3>WALIMATULURUS</h3>
+            <h1>Omar Farouq<br style="margin-bottom: 5px;"><span style="font-size:2rem; font-family:'Playfair Display'; font-style:italic;">&</span><br>Nurul Izzah</h1>
+            <p class="serif">JULAI 18, 2026 &nbsp;|&nbsp; SUNGAI PETANI</p>
+            <p class="serif" style="font-size: 14px; font-weight: 400; font-style: italic; margin-top: 15px;">#OMarriedIzzah</p>
         </section>
 
         <!-- Main Invitation -->
-        <section>
-            <div data-aos="fade-up">
-                <p style="font-size: 1.5rem; margin-bottom: 10px;">﷽</p>
-                <p style="font-weight: 600; margin-bottom: 20px;">ASSALAMUALAIKUM W.B.T & SALAM SEJAHTERA</p>
-                <h2 style="font-size: 1.8rem;">Muhamad Zahir Bin Abdul Razak</h2>
-                <p>&</p>
-                <h2 style="font-size: 1.8rem;">Harifah Binti Md Amin</h2>
-                <p style="margin: 20px 0; font-size: 0.85rem; line-height: 1.6;">
-                    DENGAN PENUH KESYUKURAN DAN HORMATNYA MENJEMPUT YBHG. DATO'/DATIN/TUAN/PUAN/ENCIK/CIK KE MAJLIS PERKAHWINAN PUTERI KAMI
-                </p>
-            </div>
+        <section data-aos="fade-up">
+            <p style="font-size: 1.5rem; margin-bottom: 10px;">﷽</p>
+            <p style="font-weight: 600; margin-bottom: 25px; font-size: 11px; letter-spacing: 0.5px;">ASSALAMUALAIKUM W.B.T & SALAM SEJAHTERA</p>
+            <h2 style="font-family: 'Montserrat'; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;">MUHAMAD ZAHIR BIN ABDUL RAZAK</h2>
+            <p style="margin: 5px 0;">&</p>
+            <h2 style="font-family: 'Montserrat'; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;">HARIFAH BINTI MD AMIN</h2>
+            <p style="margin: 20px 0; font-size: 12px; line-height: 1.6;">
+                DENGAN PENUH KESYUKURAN DAN HORMATNYA MENJEMPUT YBHG. DATO'/DATIN/TUAN/PUAN/ENCIK/CIK KE MAJLIS PERKAHWINAN PUTERI KAMI
+            </p>
 
+            <!-- Susunan Gambar Tetap Tegap Walaupun Tiada Gambar Asset -->
             <div class="couple-section">
-                <div class="photo-frame frame-bride" data-aos="fade-right">
-                    <img src="gambar_izzah.jpg" alt="Bride">
+                <div class="photo-frame frame-bride" data-aos="fade-right" data-aos-delay="200">
+                    <!-- Ganti src="gambar_izzah.jpg" bila dah ready imej -->
+                    <div class="img-placeholder">Gambar Izzah</div>
                     <div class="name-label">NURUL IZZAH BINTI MUHAMAD ZAHIR</div>
                 </div>
-                <div class="photo-frame frame-groom" data-aos="fade-left">
-                    <img src="omar.jpg" alt="Groom">
+                <div class="photo-frame frame-groom" data-aos="fade-left" data-aos-delay="400">
+                    <!-- Ganti src="omar.jpg" bila dah ready imej -->
+                    <div class="img-placeholder">Gambar Omar</div>
                     <div class="name-label">OMAR FAROUQ BIN RAHIM</div>
                 </div>
             </div>
         </section>
 
         <!-- Countdown -->
-        <section style="background: var(--light-pink);">
-            <h2 data-aos="fade-up">Menanti Hari Bahagia</h2>
+        <section style="padding: 20px;">
+            <h2 data-aos="fade-up" style="font-family: 'Playfair Display'; font-size: 22px; color: #5d6353; font-style: normal; letter-spacing: 2px; text-transform: uppercase;">Menanti Hari Bahagia</h2>
             <div class="countdown-container" data-aos="zoom-in">
                 <div class="cd-item"><span id="days" class="cd-number">00</span><span class="cd-label">Days</span></div>
                 <div class="cd-item"><span id="hours" class="cd-number">00</span><span class="cd-label">Hours</span></div>
                 <div class="cd-item"><span id="mins" class="cd-number">00</span><span class="cd-label">Mins</span></div>
                 <div class="cd-item"><span id="secs" class="cd-number">00</span><span class="cd-label">Secs</span></div>
             </div>
-            <p data-aos="fade-up" style="margin-top: 15px; font-weight: bold; color: var(--maroon);">#OMarriedIzzah</p>
         </section>
 
         <!-- Event Details -->
-        <section>
-            <h2 data-aos="fade-up" style="font-size: 2.5rem;">Butiran Majlis</h2>
-            <div data-aos="fade-up">
-                <p class="serif" style="font-weight: bold; margin-top: 20px;">TARIKH</p>
-                <p>SABTU, 18 JULAI 2026</p>
-                <p>4 SAFAR 1448 AH</p>
+        <section data-aos="fade-up">
+            <h2 style="font-size: 44px; color: #3b4d3a; line-height: 1; font-family: 'Montserrat'; font-weight: 400; letter-spacing: 1px;">BUTIRAN MAJLIS</h2>
+            <div>
+                <p class="serif" style="font-weight: bold; margin-top: 25px; font-size: 20px;">Tarikh</p>
+                <p style="font-size: 15px; margin-top: 5px; font-weight: 600;">SABTU, 18 JULAI 2026<br>4 SAFAR 1448 AH</p>
             </div>
 
-            <div class="timeline" data-aos="fade-up">
+            <p class="serif" style="font-weight: bold; margin-top: 25px; font-size: 20px;">Aturcara Majlis</p>
+            <div class="timeline">
                 <div class="timeline-item">
-                    <p class="time">11:00 AM</p>
-                    <p>KETIBAAN TETAMU & JAMUAN MAKAN</p>
+                    <span class="time">11:00 AM</span>
+                    <span class="event">KETIBAAN TETAMU & JAMUAN MAKAN</span>
                 </div>
                 <div class="timeline-item">
-                    <p class="time">12:00 PM</p>
-                    <p>KETIBAAN PENGANTIN</p>
+                    <span class="time">12:00 PM</span>
+                    <span class="event">KETIBAAN PENGANTIN</span>
                 </div>
                 <div class="timeline-item">
-                    <p class="time">04:00 PM</p>
-                    <p>MAJLIS SELESAI</p>
+                    <span class="time">04:00 PM</span>
+                    <span class="event">MAJLIS SELESAI</span>
                 </div>
             </div>
 
-            <div data-aos="fade-up">
-                <p class="serif" style="font-weight: bold;">TEMPAT</p>
-                <p style="font-size: 0.9rem;">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</p>
+            <div>
+                <p class="serif" style="font-weight: bold; font-size: 20px;">Tempat</p>
+                <p style="font-size: 14px; margin-top: 5px;"><a href="#" class="location-link">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</a></p>
             </div>
+        </section>
+
+        <!-- Prayer Text -->
+        <section data-aos="fade-up" style="padding-top: 10px;">
+            <p style="font-size: 13px; line-height: 1.8; font-style: italic; margin-bottom: 20px;">
+                YA ALLAH, BERKATILAH PENYATUAN INI, SATUKANLAH HATI MEREKA DALAM KASIH DAN RAHMAT-MU, SERTA KURNIAKANLAH KEBAHAGIAAN YANG BERKEKALAN HINGGA KE SYURGA-MU. AAMIIN YA RABBAL 'ALAMIN.
+            </p>
+            <p style="font-size: 11px; font-family: 'Montserrat'; margin-bottom: 5px;">SURAH AN-NABA' AYAT 8:</p>
+            <p class="serif" style="font-style: italic; font-size: 16px; color: var(--maroon);">"Dan Kami menciptakan kamu berpasang-pasangan."</p>
         </section>
 
     </div>
@@ -314,8 +338,8 @@
     <!-- Modals Section -->
     <div id="modal-contact" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-contact')">&times;</span>
-            <h3>Hubungi Kami</h3>
+            <span class="close-modal" onclick="closeModal('modal-contact')">&larr;</span>
+            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">Hubungi Kami</p>
             <div class="contact-row">Zahir: 0195788832</div>
             <div class="contact-row">Harifah: 0194125774</div>
             <div class="contact-row">Izharshah: 0174908583</div>
@@ -326,30 +350,30 @@
 
     <div id="modal-rsvp" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-rsvp')">&times;</span>
-            <h3>RSVP Kehadiran</h3>
-            <p style="margin: 20px 0;">Sila sahkan kehadiran anda sebelum 16 JULAI 2026</p>
-            <button class="nav-btn" style="padding: 15px 30px;">KLIK UNTUK RSVP</button>
+            <span class="close-modal" onclick="closeModal('modal-rsvp')">&larr;</span>
+            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">RSVP Kehadiran</p>
+            <p style="margin: 20px 0; font-size: 13px;">Sila sahkan kehadiran anda sebelum 16 JULAI 2026</p>
+            <button class="action-btn">RSVP</button>
         </div>
     </div>
 
     <div id="modal-gift" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-gift')">&times;</span>
-            <h3>Hadiah / Salam Kerukunan</h3>
+            <span class="close-modal" onclick="closeModal('modal-gift')">&larr;</span>
+            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">HADIAH</p>
             <img src="maybank-qr.png" alt="Maybank QR" class="qr-img">
-            <p><strong>Nurul Izzah Binti Muhammad Zahir</strong></p>
-            <p>Maybank: 152189260080</p>
+            <p style="font-size: 13px;"><strong>Nurul Izzah Binti Muhamad Zahir</strong></p>
+            <p style="font-size: 12px; margin-top: 5px;">Maybank: 152189260080</p>
         </div>
     </div>
 
     <div id="modal-location" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-location')">&times;</span>
-            <h3>Lokasi Majlis</h3>
-            <img src="waze-qr.png" alt="Waze QR" class="qr-img">
-            <p style="font-size: 0.8rem; margin-bottom: 20px;">Scan QR untuk navigasi ke Dewan Impian Unggul</p>
-            <button class="nav-btn">BUKA GOOGLE MAPS</button>
+            <span class="close-modal" onclick="closeModal('modal-location')">&larr;</span>
+            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">Tempat</p>
+            <p style="font-size: 12px; line-height: 1.5; margin-bottom: 15px;">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</p>
+            <button class="action-btn" style="margin-bottom: 15px; width: 80%;">Scan Lokasi Majlis</button>
+            <img src="waze-qr.png" alt="Waze QR" class="qr-img" style="width: 140px; height: 140px; margin-top: 0;">
         </div>
     </div>
 
@@ -362,7 +386,6 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize AOS
         AOS.init({ duration: 1000, once: true });
 
         // Countdown Timer Logic
@@ -371,7 +394,6 @@
         function updateCountdown() {
             const now = new Date().getTime();
             const gap = targetDate - now;
-
             const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
 
             const d = Math.floor(gap / day);
@@ -386,12 +408,19 @@
         }
         setInterval(updateCountdown, 1000);
 
-        // Modal Functions
+        // Modal Functions with scale active
         function openModal(id) {
-            document.getElementById(id).classList.add('active');
+            const m = document.getElementById(id);
+            m.classList.add('active');
         }
         function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
+            const m = document.getElementById(id);
+            m.classList.remove('active');
+        }
+        window.onclick = function(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal(e.target.id);
+            }
         }
 
         // Music Logic
@@ -399,16 +428,16 @@
         const musicBtn = document.getElementById("music-toggle");
         let isPlaying = false;
 
-        // Autoplay Bypass on first interaction
         window.addEventListener('click', () => {
             if (!isPlaying) {
-                music.play();
+                music.play().catch(e => console.log("Playback extension bypass"));
                 isPlaying = true;
                 musicBtn.innerText = "🎵";
             }
         }, { once: true });
 
-        musicBtn.addEventListener('click', () => {
+        musicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (isPlaying) {
                 music.pause();
                 musicBtn.innerText = "🔇";
