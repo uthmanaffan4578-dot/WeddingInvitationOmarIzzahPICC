@@ -14,68 +14,6 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-
-        /* ==========================================================================
-           STYLE SKRIN COVER (WELCOME SCREEN FOR AUTOPLAY AUDIO)
-           ========================================================================== */
-        .welcome-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f9ebe6 0%, #f3d1c9 100%);
-            z-index: 9999; /* Sentiasa duduk paling atas sekali sebelum ditekan */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        /* Bila kad dibuka, kita slide kan skrin ni naik ke atas skrin phone */
-        .welcome-overlay.fade-out-page {
-            transform: translateY(-100%);
-        }
-
-        .welcome-content h1 {
-            font-family: 'Great Vibes', cursive, sans-serif;
-            font-size: 38pt;
-            color: var(--maroon-text);
-            margin: 15px 0;
-        }
-
-        .welcome-content h2 {
-            font-size: 14pt;
-            letter-spacing: 3px;
-            color: #8a6d65;
-            text-transform: uppercase;
-        }
-
-        .welcome-content p {
-            font-size: 10pt;
-            color: #666;
-            margin-bottom: 25px;
-            padding: 0 20px;
-        }
-
-        .btn-buka-kad {
-            background-color: var(--maroon-text);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            font-size: 12pt;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(128, 51, 60, 0.3);
-            animation: pulseButton 1.5s infinite alternate;
-        }
-
-        @keyframes pulseButton {
-            from { transform: scale(1); }
-            to { transform: scale(1.06); }
-        }
-
         :root {
             --bg-cream: #ffb6c1 ; /* Warna latar belakang krim floral lembut kau */
             --maroon-text: #80333c; /* Warna tulisan merah manggis/maroon */
@@ -102,31 +40,123 @@
             overflow-x: hidden;
         }
 
+        /* ==========================================================================
+           STYLE REKAAN ENVELOPE & INTERAKTIF WAX SEAL (Rujukan: Image eba529.jpg)
+           ========================================================================== */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #f9ebe6;
+            z-index: 9999; /* Sentiasa berada di lapisan paling atas sekali */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Mengangkat skrin sampul surat naik ke atas selepas animasi video 1 saat selesai */
+        .welcome-overlay.fade-out-page {
+            transform: translateY(-100%);
+        }
+
+        /* Menjadikan video sebagai background penuh yang responsif mengikut resolusi phone */
+        .envelope-video-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        /* Container konten lutsinar di atas lapisan video */
+        .welcome-content-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* BUTANG WAX SEAL: Kedudukan diletakkan secara peratusan berdasarkan lipatan video */
+        .btn-wax-seal-trigger {
+            position: absolute;
+            bottom: 38%; /* Laraskan peratusan % ni naik/turun ikut garisan lipatan video envelope kau */
+            width: 85px;  /* Lebar saiz acuan bulatan butang */
+            height: 85px;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            outline: none;
+            padding: 0;
+            
+            /* Animasi denyutan nadi lembut pada butang */
+            animation: waxSealPulse 1.4s infinite alternate;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* GAYA KHUSUS IMEJ PNG WAX SEAL ASING KAU */
+        .wax-seal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)); 
+            transition: transform 0.2s ease;
+        }
+
+        /* Efek klik mekanikal pada wax seal */
+        .btn-wax-seal-trigger:active .wax-seal-img {
+            transform: scale(0.9);
+        }
+
+        @keyframes waxSealPulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.06); }
+        }
+
         /* Pembungkus Utama (Sama saiz dengan resolusi telefon bimbit kau) */
         .main-wrapper {
             width: 100%;
             max-width: 450px;
             background-color: var(--bg-cream);
-            background-image: url('background-pattern.png'); /* Menggunakan satu corak bunga krim sekata */
+            background-image: url('background-pattern.png'); 
             background-size: cover;
             background-repeat: repeat-y;
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            padding: 0 15px 60px 15px; /* Ditambah padding sisi supaya frame tak melekat tepi skrin wrapper */
+            padding: 0 15px 80px 15px; /* Ditambah padding bawah biar tak bertindih dengan bottom-navbar */
         }
 
-        /* Sticky Top Navigation Bar (Sebiji macam Image 2) */
-        .top-navbar {
-            position: sticky;
-            top: 0;
-            width: calc(100% + 30px); /* Ditambah saiz untuk neutralize padding main-wrapper */
-            margin-left: -15px;
+        /* ==========================================================================
+           STICKY BOTTOM NAVIGATION BAR (Gaya Premium App - Sentiasa Kat Bawah)
+           ========================================================================== */
+        .bottom-navbar {
+            position: fixed; 
+            bottom: 0;       
+            top: auto;
+            width: 100%;
+            max-width: 450px; 
             background-color: var(--nav-bg);
             display: flex;
             justify-content: space-around;
-            padding: 12px 5px;
-            z-index: 999;
+            padding: 14px 5px; 
+            z-index: 1999; 
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15); 
+            margin-left: -15px; /* Selaras kedudukan dalam wrapper */
         }
 
         .nav-button {
@@ -163,12 +193,10 @@
             background-size: 100% 100%;
             border: none;
             
-            /* ---- TRIK POTONG PAKSA (CLIP-PATH) ---- */
             border-radius: 50px;
             overflow: hidden;
-            clip-path: inset(0 round 24px); /* Ini akan paksa bucu imej PNG tu melengkung ikut 24px */
+            clip-path: inset(0 round 24px); 
             
-            /* Tetapan asal yang lain */
             transform: scale(0.8);
             opacity: 0.55;
             filter: drop-shadow(0 4px 8px rgba(128, 51, 60, 0.08));
@@ -178,7 +206,6 @@
                         opacity 0.5s ease;
         }
 
-        /* Jangan lupa pastikan clip-path kekal dekat active class */
         .section-frame.active {
             transform: scale(1.04);
             opacity: 1;
@@ -186,9 +213,7 @@
             z-index: 5;
         }
 
-        /* ==========================================================================
-           1. HERO INVITATION STYLE (Picit Jarak Paksa Rapat Antara & dan Nama)
-           ========================================================================== */
+        /* HERO INVITATION STYLE */
         .hero-section {
             padding-top: 40px;
             padding-bottom: 30px;
@@ -259,9 +284,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* ==========================================================================
-           2. PARENTS & COUPLE PHOTO STYLE (Rujukan: Image 3)
-           ========================================================================== */
+        /* PARENTS & COUPLE PHOTO STYLE */
         .bismillah-text {
             font-size: 24px;
             color: #000000;
@@ -324,17 +347,6 @@
             object-fit: cover;
         }
 
-        .profile-wooden-frame .empty-img-box {
-            width: 100%;
-            height: 100%;
-            background-color: #e5e5e5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 11px;
-            color: #777;
-        }
-
         .couple-text-details {
             padding: 0 15px;
             font-size: 13px;
@@ -343,9 +355,7 @@
             line-height: 1.4;
         }
 
-        /* ==========================================================================
-           3. COUNTDOWN & VECTOR STYLE (Rujukan: Image 4)
-           ========================================================================== */
+        /* COUNTDOWN & VECTOR STYLE */
         .section-headline-serif {
             font-family: var(--font-serif);
             font-size: 26px;
@@ -387,9 +397,7 @@
             display: block;
         }
 
-        /* ==========================================================================
-           4. ITINERARY & DETAILS STYLE (Rujukan: Image 5)
-           ========================================================================== */
+        /* ITINERARY & DETAILS STYLE */
         .huge-section-title {
             font-family: var(--font-serif);
             font-size: 54px;
@@ -472,7 +480,6 @@
             line-height: 1.6;
         }
 
-        /* Ruangan Doa */
         .prayer-blessing-text {
             font-size: 13px;
             line-height: 1.8;
@@ -481,34 +488,23 @@
             padding: 0 10px;
         }
 
-        /* ==========================================================================
-           5. FULL-PAGE PANEL OVERLAY SYSTEM (Rujukan: Image 6, 7, 8, 9)
-           ========================================================================== */
-        /* ==========================================================================
-           SISTEM ANIMASI POP-UP PANEL PENUH (BUBBLE POP EFFECT)
-           ========================================================================== */
+        /* PANEL OVERLAY SYSTEM (Bbubble pop effect) */
         .fullpage-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(249, 235, 230, 0.95); /* Tukar jadi lutsinar sikit supaya nampak classy */
+            background-color: rgba(249, 235, 230, 0.95); 
             background-image: url('background-pattern.png');
             background-size: cover;
             z-index: 2000;
             display: none;
             justify-content: center;
             overflow-y: auto;
-            
-            /* Animasi pudar untuk latar belakang overlay */
             animation: fadeInOverlay 0.3s ease forwards;
         }
 
-        /* Kotak Panel Utama Merah Jambu Lembut (Ditambah Animasi Bubble) */
-        /* ==========================================================================
-           FIXING POP-UP PANEL PENUH (Bagi Center Tegap & Animasi Mantap)
-           ========================================================================== */
         .fullpage-content-box {
             width: 100%;
             max-width: 450px;
@@ -516,36 +512,28 @@
             padding: 40px 25px;
             text-align: center;
             position: relative;
-            
-            /* Paksa elemen di dalam duduk betul-betul tengah skrin */
             display: flex;
             flex-direction: column;
             justify-content: center; 
             align-items: center;
         }
 
-        /* Kotak Panel Utama Merah Jambu Lembut */
         .pink-dashboard-card {
             background-color: var(--card-pink);
             width: 100%;
-            max-width: 360px; /* Paksa saiz lebar dia tegap tak lari mengikut skrin */
+            max-width: 360px; 
             border-radius: 40px;
             padding: 40px 20px;
             color: white;
             box-shadow: 0 15px 35px rgba(128, 51, 60, 0.25);
             text-align: center;
-            
-            /* Kita kekalkan transform asal dekat sini supaya Flexbox tak keliru kedudukan */
             transform: scale(1); 
-            
-            /* Pemicu animasi bubble yang selamat tanpa mengacau paksi koordinat X dan Y */
             animation: bubbleInCard 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25) forwards;
         }
 
-        /* Butang Balik Bulat Merah Manggis (Dibetulkan kedudukan biar tak terkeluar) */
         .back-circle-button {
             position: absolute;
-            top: 30px; /* Jarak yang selamat dari atas */
+            top: 30px; 
             left: 25px;
             background-color: var(--maroon-text);
             color: white;
@@ -562,21 +550,14 @@
             z-index: 2010;
         }
 
-        /* LOGIK FORMULA ANIMASI JALAN (RE-DESIGNED FOR COMPATIBILITY) */
         @keyframes fadeInOverlay {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
         @keyframes bubbleInCard {
-            0% {
-                transform: scale(0.6); /* Mula dari 60% supaya tak gegar sangat */
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1); /* Mendarat tegap pada saiz 100% tepat di tengah */
-                opacity: 1;
-            }
+            0% { transform: scale(0.6); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
         .dashboard-card-headline {
@@ -628,7 +609,7 @@
 
         .music-floating-toggle {
             position: fixed;
-            bottom: 25px;
+            bottom: 85px; /* Dinaikkan ke atas sikit supaya tak bertindih dengan bottom-navbar baru */
             right: calc(50% - 200px);
             width: 45px;
             height: 45px;
@@ -652,17 +633,25 @@
 </head>
 <body>
 
+    <!-- ================= WELCOME COVER SCREEN: ENVELOPE + WAX SEAL ASING ================= -->
+    <div id="welcome-cover" class="welcome-overlay">
+        <!-- Fail video latar belakang envelope sahaja (tanpa wax seal) -->
+        <video id="envelope-video" class="envelope-video-bg" muted playsinline>
+            <source src="envelope.mp4" type="video/mp4">
+        </video>
+
+        <!-- Container Konten Lutsinar -->
+        <div class="welcome-content-container">
+            <!-- Butang Wax Seal Interaktif -->
+            <button onclick="bukaSampulSurat()" class="btn-wax-seal-trigger" aria-label="Buka Kad">
+                <img src="wax_seal.png" alt="Wax Seal Red" class="wax-seal-img">
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN WRAPPER UNIT -->
     <div class="main-wrapper">
         
-        <!-- STICKY TOP NAVIGATION BAR (Rujukan: Image 2) -->
-        <nav class="top-navbar">
-            <button class="nav-button" onclick="displayFullPage('page-contact')">Hubungi</button>
-            <button class="nav-button" onclick="displayFullPage('page-rsvp')">RSVP</button>
-            <button class="nav-button" onclick="displayFullPage('page-gift')">Hadiah</button>
-            
-            <button class="nav-button" onclick="window.open('https://maps.app.goo.gl/RZmgrLkfWVX7uLAw7', '_blank')">Lokasi</button>
-        </nav>
-
         <!-- ================= FRAME 1: HERO HOME PAGE ================= -->
         <div class="section-frame" data-aos="fade-up" data-aos-duration="1000">
             <section class="hero-section" style="padding: 0;">
@@ -704,7 +693,6 @@
                     <!-- Baris Pengantin Perempuan (Kiri) -->
                     <div class="couple-row-block">
                         <div class="profile-wooden-frame">
-                            <!-- Link terus ke fail gambar_izzah.jpg -->
                             <img src="gambar_izzah.png" alt="Nurul Izzah">
                         </div>
                         <div class="couple-text-details">
@@ -715,7 +703,6 @@
                     <!-- Baris Pengantin Lelaki (Kanan) -->
                     <div class="couple-row-block reverse-direction" style="margin-bottom: 0;">
                         <div class="profile-wooden-frame">
-                            <!-- Link terus ke fail gambar_omar.jpg -->
                             <img src="gambar_omar.png" alt="Omar Farouq">
                         </div>
                         <div class="couple-text-details">
@@ -788,6 +775,14 @@
                 <p style="font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--maroon-text); margin-bottom: 0;">"Dan Kami menciptakan kamu berpasang-pasangan."</p>
             </section>
         </div>
+
+        <!-- STICKY BOTTOM NAVIGATION BAR (Dah Pindah Sini & Update Kelas) -->
+        <nav class="bottom-navbar">
+            <button class="nav-button" onclick="displayFullPage('page-contact')">Hubungi</button>
+            <button class="nav-button" onclick="displayFullPage('page-rsvp')">RSVP</button>
+            <button class="nav-button" onclick="displayFullPage('page-gift')">Hadiah</button>
+            <button class="nav-button" onclick="window.open('https://maps.app.goo.gl/RZmgrLkfWVX7uLAw7', '_blank')">Lokasi</button>
+        </nav>
 
     </div><!-- End Main Wrapper -->
 
@@ -907,29 +902,45 @@
         }
         setInterval(runCanvaClock, 1000);
 
-        // 4. LOGIK UTAMA: AUTOPLAY MP3 & FLOATING MUSIC TOGGLE BUTTON
+        // 4. LOGIK ENGING UTAMA: PLAY ENVELOPE VIDEO (1 SAAT) & START AUTOPLAY AUDIO
         const musicTrack = document.getElementById("canva-bg-music");
         const musicControllerButton = document.getElementById("music-floating-toggle");
+        const envelopeVid = document.getElementById("envelope-video");
         let trackPlayingStatus = false;
 
-        // Fungsi pemicu bila tetamu tekan butang "Buka Kad" dekat skrin hadapan
-        function bukaKadUndangan() {
-            // Slaidkan welcome cover naik ke atas
-            document.getElementById("welcome-cover").classList.add("fade-out-page");
-            
-            // Paksa autoplay jalan secara sah (Bypass sekatan browser)
-            musicTrack.play().then(() => {
-                trackPlayingStatus = true;
-                if (musicControllerButton) musicControllerButton.innerText = "🎵";
-            }).catch(err => {
-                console.log("Browser block bypass error: ", err);
-            });
+        // Memastikan video di-pause siap-siap pada frame pertama masa website baru load
+        if (envelopeVid) {
+            envelopeVid.currentTime = 0;
+            envelopeVid.pause();
         }
 
-        // Fungsi kawalan butang floating di penjuru bawah kanan (On/Off Manual)
+        function bukaSampulSurat() {
+            if (!envelopeVid) return;
+
+            // 1. Jalankan rakaman video sampul surat terbukak
+            envelopeVid.play();
+
+            // 2. Serentak dengan itu, paksa autoplay lagu MP3 berjalan (Bypass sekatan browser)
+            if (musicTrack) {
+                musicTrack.play().then(() => {
+                    trackPlayingStatus = true;
+                    if (musicControllerButton) musicControllerButton.innerText = "🎵";
+                }).catch(err => console.log("Audio play blocked: ", err));
+            }
+
+            // 3. SET MASA TIMING: Tunggu tepat 1000 milisaat (1 Saat), kemudian freeze video & angkat cover
+            setTimeout(() => {
+                envelopeVid.pause(); // Freeze video tepat selepas 1 saat!
+                
+                // Tolak welcome cover naik ke atas langit untuk dedahkan isi kad utama
+                document.getElementById("welcome-cover").classList.add("fade-out-page");
+            }, 1000); // 1000ms bersamaan 1 saat tepat
+        }
+
+        // Fungsi Butang Floating Toggle Musik Bawah Kanan (On/Off Manual)
         if (musicControllerButton) {
             musicControllerButton.addEventListener('click', (event) => {
-                event.stopPropagation(); // Elak kacau elemen bertindih yang lain
+                event.stopPropagation();
                 if (trackPlayingStatus) {
                     musicTrack.pause();
                     musicControllerButton.innerText = "🔇";
@@ -948,7 +959,7 @@
 
         const observerOptions = {
             root: null,
-            rootMargin: "-35% 0px -35% 0px", /* Fokus zon skrol optimum tengah skrin phone */
+            rootMargin: "-35% 0px -35% 0px", 
             threshold: 0.1
         };
 
