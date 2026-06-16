@@ -422,41 +422,63 @@
         /* ==========================================================================
            SISTEM ANIMASI POP-UP PANEL PENUH (BUBBLE POP EFFECT)
            ========================================================================== */
-        .fullpage-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        /* ==========================================================================
+           FIXING POP-UP PANEL PENUH (Bagi Center Tegap & Animasi Mantap)
+           ========================================================================== */
+        .fullpage-content-box {
             width: 100%;
-            height: 100%;
-            background-color: rgba(249, 235, 230, 0.95); /* Tukar jadi lutsinar sikit supaya nampak classy */
-            background-image: url('background-pattern.png');
-            background-size: cover;
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            overflow-y: auto;
+            max-width: 450px;
+            min-height: 100vh;
+            padding: 40px 25px;
+            text-align: center;
+            position: relative;
             
-            /* Animasi pudar untuk latar belakang overlay */
-            animation: fadeInOverlay 0.3s ease forwards;
+            /* Paksa elemen di dalam duduk betul-betul tengah skrin */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center;
         }
 
-        /* Kotak Panel Utama Merah Jambu Lembut (Ditambah Animasi Bubble) */
+        /* Kotak Panel Utama Merah Jambu Lembut */
         .pink-dashboard-card {
             background-color: var(--card-pink);
             width: 100%;
+            max-width: 360px; /* Paksa saiz lebar dia tegap tak lari mengikut skrin */
             border-radius: 40px;
             padding: 40px 20px;
             color: white;
             box-shadow: 0 15px 35px rgba(128, 51, 60, 0.25);
             text-align: center;
             
-            /* PEMICU ANIMASI BUBBLE: Membesar dan melantun lembut masa dibuka */
-            transform: scale(0);
-            animation: bubbleInCard 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
-            animation-delay: 0.1s; /* Bagi overlay jalan dulu sikit baru card melompat keluar */
+            /* Kita kekalkan transform asal dekat sini supaya Flexbox tak keliru kedudukan */
+            transform: scale(1); 
+            
+            /* Pemicu animasi bubble yang selamat tanpa mengacau paksi koordinat X dan Y */
+            animation: bubbleInCard 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.25) forwards;
         }
 
-        /* LOGIK FORMULA ANIMASI JALAN (KEYFRAMES) */
+        /* Butang Balik Bulat Merah Manggis (Dibetulkan kedudukan biar tak terkeluar) */
+        .back-circle-button {
+            position: absolute;
+            top: 30px; /* Jarak yang selamat dari atas */
+            left: 25px;
+            background-color: var(--maroon-text);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 2010;
+        }
+
+        /* LOGIK FORMULA ANIMASI JALAN (RE-DESIGNED FOR COMPATIBILITY) */
         @keyframes fadeInOverlay {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -464,19 +486,15 @@
 
         @keyframes bubbleInCard {
             0% {
-                transform: scale(0.3);
+                transform: scale(0.6); /* Mula dari 60% supaya tak gegar sangat */
                 opacity: 0;
             }
-            70% {
-                transform: scale(1.05); /* Terlebih besar sikit untuk efek lantunan bubble */
-                opacity: 0.85;
-            }
             100% {
-                transform: scale(1); /* Kembali ke saiz asal */
+                transform: scale(1); /* Mendarat tegap pada saiz 100% tepat di tengah */
                 opacity: 1;
             }
         }
-        
+
         .dashboard-card-headline {
             font-size: 14px;
             text-transform: uppercase;
