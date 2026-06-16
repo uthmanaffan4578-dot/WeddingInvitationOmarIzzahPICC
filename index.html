@@ -156,33 +156,32 @@
             text-align: center;
             position: relative;
             
-            background-image: url('Background.png');
+            background-image: url('frame_bg.png');
             background-color: transparent;
             background-repeat: no-repeat;
             background-position: center;
             background-size: 100% 100%;
             border: none;
             
-            border-radius: 20px;
+            /* ---- TRIK POTONG PAKSA (CLIP-PATH) ---- */
+            border-radius: 24px;
             overflow: hidden;
+            clip-path: inset(0 round 24px); /* Ini akan paksa bucu imej PNG tu melengkung ikut 24px */
             
-            /* KEADAAN ASAL (SEBELUM FOKUS): Shadow halus gila untuk 'ambient occlusion' tipis */
+            /* Tetapan asal yang lain */
             transform: scale(0.93);
             opacity: 0.55;
             filter: drop-shadow(0 4px 8px rgba(128, 51, 60, 0.08));
             z-index: 1;
-            
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2), 
                         filter 0.5s ease,
                         opacity 0.5s ease;
         }
 
-        /* KEADAAN AKTIF (BILA USER SKROL KAT TENGAH): Shadow membesar & pekat untuk impak depth tinggi */
+        /* Jangan lupa pastikan clip-path kekal dekat active class */
         .section-frame.active {
             transform: scale(1.04);
             opacity: 1;
-            
-            /* FILTER DROP-SHADOW: Bayang lembut bertema maroon ikut bentuk lekuk imej PNG */
             filter: drop-shadow(0 15px 25px rgba(128, 51, 60, 0.22));
             z-index: 5;
         }
