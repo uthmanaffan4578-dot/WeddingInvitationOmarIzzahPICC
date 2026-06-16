@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walimatulurus Nurul Izzah & Omar Farouq</title>
+    <title>Walimatulurus Nurul IzzahOmar Farouq & Omar Farouq</title>
     
     <!-- Google Fonts untuk klon gaya tulisan Canva kau -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -141,15 +141,18 @@
 
         /* 2. Tambah kelas baru untuk paksa video duduk diam kat belakang masa skrol */
         .body-video-bg {
-            position: absolute; /* Melekat dalam skrin wrapper telefon */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Paksa video penuh satu skrin tanpa lari ratio aspect */
-            pointer-events: none; /* Supaya jari user skrol tak tersangkut pada player video */
-            z-index: 0; /* Duduk paling belakang sekali dalam wrapper */
-        }
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100; /* Supaya video tetap di belakang konten lain */
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover; /* Ini kunci utama agar video otomatis scale & fit screen */
+            background-size: cover;
+            }
 
         /* ==========================================================================
            STICKY BOTTOM NAVIGATION BAR (Gaya Premium App - Sentiasa Kat Bawah)
