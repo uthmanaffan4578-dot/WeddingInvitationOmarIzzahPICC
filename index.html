@@ -131,14 +131,24 @@
         .main-wrapper {
             width: 100%;
             max-width: 450px;
-            background-color: var(--bg-cream);
-            background-image: url('background-pattern.png'); 
-            background-size: cover;
-            background-repeat: repeat-y;
+            background-color: var(--bg-cream); /* Kekalkan warna base jika video lambat load */
+            /* background-image: url('background-pattern.png'); */ /* <<< PADAM / COMMENT BARIS NI */
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            padding: 0 15px 80px 15px; /* Ditambah padding bawah biar tak bertindih dengan bottom-navbar */
+            padding: 0 15px 80px 15px;
+        }
+
+        /* 2. Tambah kelas baru untuk paksa video duduk diam kat belakang masa skrol */
+        .body-video-bg {
+            position: absolute; /* Melekat dalam skrin wrapper telefon */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Paksa video penuh satu skrin tanpa lari ratio aspect */
+            pointer-events: none; /* Supaya jari user skrol tak tersangkut pada player video */
+            z-index: 0; /* Duduk paling belakang sekali dalam wrapper */
         }
 
         /* ==========================================================================
@@ -635,7 +645,7 @@
 
     <!-- ================= WELCOME COVER SCREEN: AUTOMATIC VIDEO PLAY ================= -->
     <div id="welcome-cover" class="welcome-overlay">
-        <!-- Tambah attribute autoplay supaya masuk je terus jalan sendiri -->
+        <!-- Pastikan tiada perkataan 'loop' dekat sini tau bro -->
         <video id="envelope-video" class="envelope-video-bg" autoplay muted playsinline>
             <source src="envelope.mp4" type="video/mp4">
         </video>
@@ -651,6 +661,12 @@
 
     <!-- MAIN WRAPPER UNIT -->
     <div class="main-wrapper">
+
+        <video id="html-bg-video" class="body-video-bg" autoplay loop muted playsinline>
+            <source src="bgvid.mp4" type="video/mp4">
+        </video>
+        
+        <div class="section-frame" data-aos="fade-up" data-aos-duration="1000">
         
         <!-- ================= FRAME 1: HERO HOME PAGE ================= -->
         <div class="section-frame" data-aos="fade-up" data-aos-duration="1000">
@@ -902,27 +918,27 @@
         }
         setInterval(runCanvaClock, 1000);
 
-        // 4. LOGIK ENGING UTAMA: AUTO-PLAY & FREEZE VIDEO (1 SAAT) + MANUAL MUSIC ON WAX SEAL
+        // 4. LOGIK ENGIN UTAMA: PLAY SAMPAI HABIS (FREEZE FRAME AKHIR) & LOOP SELEPAS BUKA KAD
         const musicTrack = document.getElementById("canva-bg-music");
         const musicControllerButton = document.getElementById("music-floating-toggle");
         const envelopeVid = document.getElementById("envelope-video");
         let trackPlayingStatus = false;
 
-        // AUTOMATIC TIMING LOGIC: Sebaik sahaja website load, tunggu 1 saat tepat untuk freeze video
+        // AUTOMATIC EVENT LOGIC: Kesan bila video dah habis main sampai frame terakhir
         if (envelopeVid) {
-            // Memastikan video bermula dari awal kalau ter-cache
             envelopeVid.currentTime = 0; 
+            envelopeVid.loop = false; // Pastikan fasa pertama dia JANGAN loop dulu supaya boleh tamat
             
-            // Set masa 1000 milisaat (1 saat) untuk bekukan pergerakan video envelope
-            setTimeout(() => {
-                envelopeVid.pause(); 
-                console.log("Video successfully frozen after 1 second.");
-            }, 1500); 
+            // Bila video tamat jalan, paksa dia freeze dekat frame paling akhir sekali
+            envelopeVid.addEventListener('ended', () => {
+                envelopeVid.pause();
+                console.log("Video dah habis main sepunuhnya. Auto-freeze dekat frame terakhir.");
+            });
         }
 
         // FUNGSI PICUAN: Bila tetamu picit butang Wax Seal Merah
         function bukaSampulSurat() {
-            // 1. Paksa pasang musik lagu Arvian Dwi (Bypass sekatan browser sebab ada sentuhan user)
+            // 1. Pasang musik lagu Arvian Dwi secara automatik (Bypass sekatan)
             if (musicTrack) {
                 musicTrack.play().then(() => {
                     trackPlayingStatus = true;
@@ -930,7 +946,13 @@
                 }).catch(err => console.log("Audio play blocked by browser: ", err));
             }
 
-            // 2. Tolak skrin welcome cover slaid naik ke atas dengan lancar
+            // 2. Trik Multimedia: Hidupkan balik video dan paksa dia LOOP tanpa henti untuk background
+            if (envelopeVid) {
+                envelopeVid.loop = true;
+                envelopeVid.play();
+            }
+
+            // 3. Tolak skrin welcome cover slaid naik ke atas dengan lancar
             const welcomeOverlay = document.getElementById("welcome-cover");
             if (welcomeOverlay) {
                 welcomeOverlay.classList.add("fade-out-page");
