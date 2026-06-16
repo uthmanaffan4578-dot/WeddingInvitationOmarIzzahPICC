@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Omar & Izzah</title>
+    <title>Walimatulurus Omar Farouq & Nurul Izzah</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google Fonts untuk klon gaya tulisan Canva kau -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
-    <!-- AOS Library CSS -->
+    <!-- AOS Library CSS untuk animasi masuk lembut -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #fbe5e5;
-            --maroon: #80333c;
-            --accent-pink: #f08090;
-            --light-pink: #fdf2f2;
-            --white: #ffffff;
-            --text-dark: #4a3b32;
+            --bg-cream: #f9ebe6; /* Warna latar belakang krim floral lembut kau */
+            --maroon-text: #80333c; /* Warna tulisan merah manggis/maroon */
+            --nav-bg: #9c414d; /* Warna bar navigasi atas */
+            --btn-pink: #e28f97; /* Warna butang navigasi pastel */
+            --card-pink: #e28f97; /* Warna panel penuh untuk ruangan pop-up */
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
         }
 
         * {
@@ -29,423 +32,779 @@
         }
 
         body {
-            background-color: #f5f5f5; /* Desktop background */
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-dark);
+            background-color: #f5f5f5;
+            font-family: var(--font-sans);
+            color: #4a4a4a;
             display: flex;
             justify-content: center;
+            overflow-x: hidden;
         }
 
-        /* Mobile Wrapper */
-        .main-container {
+        /* Pembungkus Utama (Sama saiz dengan resolusi telefon bimbit kau) */
+        .main-wrapper {
             width: 100%;
             max-width: 450px;
-            background-color: var(--bg-color);
-            background-image: url('background-pattern.png');
-            background-repeat: repeat;
-            background-size: 300px;
+            background-color: var(--bg-cream);
+            background-image: url('background-pattern.png'); /* Menggunakan satu corak bunga krim sekata */
+            background-size: cover;
+            background-repeat: repeat-y;
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            overflow-x: hidden;
-            padding-bottom: 80px;
+            padding-bottom: 60px;
         }
 
-        /* Sticky Nav Bar (Warna maroon asal Canva) */
-        .navbar {
+        /* Sticky Top Navigation Bar (Sebiji macam Image 2) */
+        .top-navbar {
             position: sticky;
             top: 0;
             width: 100%;
-            background: var(--maroon);
+            background-color: var(--nav-bg);
             display: flex;
             justify-content: space-around;
             padding: 12px 5px;
-            z-index: 1000;
+            z-index: 999;
         }
 
-        .nav-btn {
-            background: var(--accent-pink);
+        .nav-button {
+            background-color: var(--btn-pink);
             color: white;
             border: none;
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
-            font-weight: 600;
+            font-family: var(--font-sans);
+            font-weight: 500;
             cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
+            transition: 0.3s ease;
         }
 
-        .nav-btn:hover { background: white; color: var(--maroon); }
+        .nav-button:hover {
+            background-color: white;
+            color: var(--maroon-text);
+        }
 
-        /* Sections Styling */
-        section { padding: 40px 20px; text-align: center; }
+        /* Konfigurasi Umum Setiap Halaman */
+        section {
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+        }
 
-        h1, h2 { font-family: 'Great Vibes', cursive; color: var(--maroon); }
-        .serif { font-family: 'Playfair Display', serif; }
+        /* Border Bunga Merah Jambu Atas & Bawah (Macam Image 3, 4, 5) */
+        .flower-border-img {
+            width: 100%;
+            display: block;
+            margin: 15px 0;
+        }
 
-        /* Hero / Envelope Section (Fix text size) */
-        .hero {
-            min-height: 75vh;
+        /* ==========================================================================
+           1. HERO INVITATION STYLE (Rujukan: Image 2)
+           ========================================================================== */
+        .hero-section {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .hero-names {
+            font-family: var(--font-serif);
+            font-size: 46px;
+            color: var(--maroon-text);
+            line-height: 1.1;
+            font-weight: 400;
+        }
+
+        .hero-ampersand {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 36px;
+            color: #333333;
+            margin: 10px 0;
+            display: block;
+        }
+
+        .center-flower-illustration {
+            width: 75%;
+            max-width: 320px;
+            margin: 30px auto;
+            display: block;
+        }
+
+        .title-walimatulurus {
+            font-family: var(--font-sans);
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #4a4a4a;
+            text-transform: uppercase;
+            margin-bottom: 35px;
+        }
+
+        .event-meta-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-family: var(--font-sans);
+            color: #4a4a4a;
+            margin-bottom: 30px;
+        }
+
+        .event-meta-info .vertical-line {
+            width: 1px;
+            height: 40px;
+            background-color: var(--maroon-text);
+            margin: 0 25px;
+        }
+
+        .primary-hashtag {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: #4a4a4a;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           2. PARENTS & COUPLE PHOTO STYLE (Rujukan: Image 3)
+           ========================================================================== */
+        .bismillah-text {
+            font-size: 24px;
+            color: #000000;
+            margin-bottom: 15px;
+        }
+
+        .greeting-sub {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
+        }
+
+        .parents-full-name {
+            font-size: 16px;
+            color: var(--maroon-text);
+            font-weight: 500;
+            margin: 5px 0;
+            letter-spacing: 0.3px;
+        }
+
+        .invitation-body-paragraph {
+            font-size: 11px;
+            line-height: 1.7;
+            margin: 25px auto;
+            max-width: 95%;
+            color: #4a4a4a;
+        }
+
+        /* Susunan Gambar Bersilang dengan Label Teks di Tepi (Image 3) */
+        .split-couple-container {
+            width: 100%;
+            margin: 35px 0;
+            text-align: left;
+        }
+
+        .couple-row-block {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .couple-row-block.reverse-direction {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+
+        .profile-wooden-frame {
+            width: 140px;
+            height: 140px;
+            background: white;
+            padding: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        .profile-wooden-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Struktur khas jika gambar belum di-upload biar reka bentuk kekal teguh */
+        .profile-wooden-frame .empty-img-box {
+            width: 100%;
+            height: 100%;
+            background-color: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            color: #777;
+        }
+
+        .couple-text-details {
+            padding: 0 15px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--maroon-text);
+            line-height: 1.4;
+        }
+
+        /* ==========================================================================
+           3. COUNTDOWN & VECTOR STYLE (Rujukan: Image 4)
+           ========================================================================== */
+        .section-headline-serif {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            color: #5d6353;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .canva-countdown-display {
+            font-size: 38px;
+            color: var(--maroon-text);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin: 15px 0;
+            font-family: var(--font-sans);
+        }
+
+        .canva-countdown-labels {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: #666666;
+            letter-spacing: 1px;
+            margin-top: -5px;
+            margin-bottom: 30px;
+        }
+
+        .canva-countdown-labels span {
+            width: 45px;
+            text-align: center;
+        }
+
+        .illustration-faceless-couple {
+            width: 65%;
+            margin: 20px auto;
+            display: block;
+        }
+
+        /* ==========================================================================
+           4. ITINERARY & DETAILS STYLE (Rujukan: Image 5)
+           ========================================================================== */
+        .huge-section-title {
+            font-family: var(--font-serif);
+            font-size: 54px;
+            color: #3b4d3a;
+            line-height: 0.9;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        .itinerary-sublabel {
+            font-size: 18px;
+            font-weight: 500;
+            color: #4a4a4a;
+            margin-top: 25px;
+            margin-bottom: 8px;
+        }
+
+        .itinerary-value-text {
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        /* Garis masa aturcara menegak sebelah kiri */
+        .canva-vertical-timeline {
+            margin: 30px auto;
+            max-width: 320px;
+            position: relative;
+            text-align: left;
+            padding-left: 30px;
+        }
+
+        .canva-vertical-timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            bottom: 5px;
+            width: 1px;
+            background: var(--maroon-text);
+        }
+
+        .timeline-row-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-row-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 5px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--maroon-text);
+            border: 2px solid var(--bg-cream);
+            box-shadow: 0 0 0 2px var(--maroon-text);
+        }
+
+        .timeline-row-item .event-time {
+            font-weight: 600;
+            color: #9c414d;
+            display: inline-block;
+            width: 80px;
+            font-size: 14px;
+        }
+
+        .timeline-row-item .event-name {
+            font-size: 13px;
+            display: inline-block;
+            vertical-align: top;
+            max-width: 200px;
+        }
+
+        .embedded-location-anchor {
+            color: #3b4d3a;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* Ruangan Doa */
+        .prayer-blessing-text {
+            font-size: 13px;
+            line-height: 1.8;
+            margin: 30px 0;
+            font-style: italic;
+            padding: 0 10px;
+        }
+
+        /* ==========================================================================
+           5. FULL-PAGE PANEL OVERLAY SYSTEM (Rujukan: Image 6, 7, 8, 9)
+           ========================================================================== */
+        .fullpage-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-cream);
+            background-image: url('background-pattern.png'); /* Pengekalan corak bunga asal */
+            background-size: cover;
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        /* Memastikan saiz panel dalaman mengikut lebar kad telefon bimbit */
+        .fullpage-content-box {
+            width: 100%;
+            max-width: 450px;
+            min-height: 100vh;
+            padding: 40px 25px;
+            text-align: center;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
         }
 
-        .hero h3 { font-size: 0.75rem; letter-spacing: 2px; color: var(--text-dark); margin-bottom: 20px; font-weight: 400; }
-        .hero h1 { font-size: 3rem; margin: 10px 0; font-weight: 400; font-family: 'Great Vibes', cursive; }
-        .hero p { margin-top: 20px; font-weight: 600; color: var(--text-dark); }
-
-        /* Couple Photo Section (Fix Staggered Height & Overlap) */
-        .couple-section {
-            position: relative;
-            height: 380px;
-            margin: 30px 0;
-        }
-
-        .photo-frame {
+        /* Butang Balik Bulat Merah Manggis (Sebiji macam Image 6-9) */
+        .back-circle-button {
             position: absolute;
-            width: 160px;
-            background: white;
-            padding: 8px;
-            border: 1px solid #ccc;
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
-            text-align: center;
-        }
-
-        /* Set default placeholder height sementara gambar takde biar tak lari */
-        .photo-frame .img-placeholder {
-            width: 100%;
-            height: 160px;
-            background-color: #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            color: #888;
-        }
-
-        .photo-frame img { width: 100%; height: 160px; object-fit: cover; display: block; }
-
-        .frame-bride { top: 0; left: 20px; z-index: 2; }
-        .frame-groom { bottom: 0; right: 20px; z-index: 1; }
-
-        .name-label {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--maroon);
-            margin-top: 8px;
-            font-weight: bold;
-            font-size: 11px;
-            line-height: 1.3;
-        }
-
-        /* Countdown */
-        .countdown-container {
-            background: white;
-            padding: 20px 10px;
-            margin: 20px 0;
-            border-radius: 15px;
-            display: flex;
-            justify-content: space-around;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        .cd-item { text-align: center; }
-        .cd-number { display: block; font-size: 1.8rem; font-weight: bold; color: var(--maroon); }
-        .cd-label { font-size: 0.65rem; color: #888; text-transform: uppercase; }
-
-        /* Modals */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(3px);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: var(--bg-color);
-            width: 100%;
-            max-width: 350px;
-            padding: 30px 20px;
-            border-radius: 25px;
-            position: relative;
-            text-align: center;
-            transform: scale(0.8);
-            transition: 0.3s ease;
-        }
-
-        .modal-overlay.active { display: flex; }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-
-        .close-modal {
-            position: absolute;
-            top: 15px; left: 20px;
+            top: 40px;
+            left: 25px;
+            background-color: var(--maroon-text);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             font-size: 20px;
-            color: var(--maroon);
             cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            z-index: 2010;
         }
 
-        .qr-img { width: 180px; height: 180px; margin: 20px auto; display: block; }
-        .contact-row { margin: 15px 0; font-weight: 600; color: var(--maroon); border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        /* Kotak Panel Utama Merah Jambu Lembut (Image 6, 7, 8, 9) */
+        .pink-dashboard-card {
+            background-color: var(--card-pink);
+            width: 100%;
+            border-radius: 40px;
+            padding: 40px 20px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            text-align: center;
+        }
 
-        /* Music Button */
-        #music-toggle {
+        .dashboard-card-headline {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .dashboard-contact-list {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 2;
+            letter-spacing: 0.5px;
+        }
+
+        /* Butang Aksi Utama Di Dalam Kad */
+        .dashboard-action-trigger {
+            background-color: #833a42; /* Merah gelap sepadan Image 7 */
+            color: white;
+            border: none;
+            padding: 12px 50px;
+            border-radius: 15px;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 20px auto;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            display: inline-block;
+        }
+
+        .dashboard-qr-wrapper {
+            width: 200px;
+            height: 200px;
+            background: white;
+            margin: 25px auto;
+            padding: 10px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-qr-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Floating Music Controller */
+        .music-floating-toggle {
             position: fixed;
-            bottom: 20px;
+            bottom: 25px;
             right: calc(50% - 200px);
             width: 45px;
             height: 45px;
-            background: var(--maroon);
+            background-color: var(--maroon-text);
             color: white;
-            border-radius: 50%;
             border: none;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 18px;
             cursor: pointer;
-            z-index: 1500;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
         }
 
         @media (max-width: 450px) {
-            #music-toggle { right: 20px; }
+            .music-floating-toggle { right: 25px; }
         }
-
-        /* Itinerary Timeline */
-        .timeline { margin: 25px auto; max-width: 320px; text-align: left; padding-left: 30px; border-left: 1px solid var(--maroon); position: relative; }
-        .timeline-item { margin-bottom: 25px; position: relative; }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -36px; top: 5px;
-            width: 11px; height: 11px;
-            background: var(--maroon);
-            border-radius: 50%;
-            border: 2px solid var(--bg-color);
-            box-shadow: 0 0 0 2px var(--maroon);
-        }
-        .time { font-weight: bold; color: var(--maroon); display: inline-block; width: 80px; font-size: 14px; }
-        .event { display: inline-block; vertical-align: top; max-width: 200px; font-size: 13px; }
-        .location-link { color: var(--text-dark); text-decoration: underline; font-weight: 600; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
+    <div class="main-wrapper">
         
-        <!-- Navigation -->
-        <nav class="navbar">
-            <button class="nav-btn" onclick="openModal('modal-contact')">Hubungi</button>
-            <button class="nav-btn" onclick="openModal('modal-rsvp')">RSVP</button>
-            <button class="nav-btn" onclick="openModal('modal-gift')">Hadiah</button>
-            <button class="nav-btn" onclick="openModal('modal-location')">Lokasi</button>
+        <!-- STICKY TOP NAVIGATION BAR (Rujukan: Image 2) -->
+        <nav class="top-navbar">
+            <button class="nav-button" onclick="displayFullPage('page-contact')">Hubungi</button>
+            <button class="nav-button" onclick="displayFullPage('page-rsvp')">RSVP</button>
+            <button class="nav-button" onclick="displayFullPage('page-gift')">Hadiah</button>
+            <button class="nav-button" onclick="displayFullPage('page-location')">Lokasi</button>
         </nav>
 
-        <!-- Hero Section -->
-        <section class="hero" data-aos="fade-up" data-aos-duration="1200">
-            <h3>WALIMATULURUS</h3>
-            <h1>Omar Farouq<br style="margin-bottom: 5px;"><span style="font-size:2rem; font-family:'Playfair Display'; font-style:italic;">&</span><br>Nurul Izzah</h1>
-            <p class="serif">JULAI 18, 2026 &nbsp;|&nbsp; SUNGAI PETANI</p>
-            <p class="serif" style="font-size: 14px; font-weight: 400; font-style: italic; margin-top: 15px;">#OMarriedIzzah</p>
+        <!-- ================= 1. HERO HOME PAGE (Rujukan: Image 2) ================= -->
+        <section class="hero-section" data-aos="fade-up" data-aos-duration="1000">
+            <h1 class="hero-names">Omar Farouq<br><span class="hero-ampersand">&</span><br>Nurul Izzah</h1>
+            
+            <img src="flower-sketch.png" alt="Flower Illustration" class="center-flower-illustration">
+            
+            <p class="title-walimatulurus">WALIMATULURUS</p>
+            
+            <div class="event-meta-info">
+                <div>JULAI 18,<br>2026</div>
+                <div class="vertical-line"></div>
+                <div>SUNGAI<br>PETANI</div>
+            </div>
+            
+            <p class="primary-hashtag">#OMarriedIzzah</p>
         </section>
 
-        <!-- Main Invitation -->
-        <section data-aos="fade-up">
-            <p style="font-size: 1.5rem; margin-bottom: 10px;">﷽</p>
-            <p style="font-weight: 600; margin-bottom: 25px; font-size: 11px; letter-spacing: 0.5px;">ASSALAMUALAIKUM W.B.T & SALAM SEJAHTERA</p>
-            <h2 style="font-family: 'Montserrat'; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;">MUHAMAD ZAHIR BIN ABDUL RAZAK</h2>
-            <p style="margin: 5px 0;">&</p>
-            <h2 style="font-family: 'Montserrat'; font-size: 18px; font-weight: 600; letter-spacing: 0.5px;">HARIFAH BINTI MD AMIN</h2>
-            <p style="margin: 20px 0; font-size: 12px; line-height: 1.6;">
-                DENGAN PENUH KESYUKURAN DAN HORMATNYA MENJEMPUT YBHG. DATO'/DATIN/TUAN/PUAN/ENCIK/CIK KE MAJLIS PERKAHWINAN PUTERI KAMI
+        <!-- ================= 2. PARENTS & PHOTOS PAGE (Rujukan: Image 3) ================= -->
+        <section style="padding-top: 10px;">
+            <img src="top-flower-border.png" alt="Flower Border" class="flower-border-img" data-aos="fade-in">
+            
+            <div data-aos="fade-up">
+                <div class="bismillah-text">﷽</div>
+                <p class="greeting-sub">ASSALAMUALAIKUM W.B.T & SALAM SEJAHTERA</p>
+                
+                <h2 class="parents-full-name">MUHAMAD ZAHIR BIN ABDUL RAZAK</h2>
+                <p style="font-size: 14px; margin: 2px 0;">&</p>
+                <h2 class="parents-full-name">HARIFAH BINTI MD AMIN</h2>
+                
+                <p class="invitation-body-paragraph">
+                    DENGAN PENUH KESYUKURAN DAN HORMATNYA MENJEMPUT YBHG. DATO'/DATIN/TUAN/PUAN/ENCIK/CIK KE MAJLIS PERKAHWINAN PUTERI KAMI
+                </p>
+            </div>
+
+            <!-- Susunan Gambar Bersilang Tepat Mengikut Sisi Canva (Image 3) -->
+            <div class="split-couple-container">
+                <!-- Baris Pengantin Perempuan (Kiri) -->
+                <div class="couple-row-block" data-aos="fade-right">
+                    <div class="profile-wooden-frame">
+                        <!-- Tukar ke <img src="gambar_izzah.jpg"> bila imej dah dimasukkan -->
+                        <div class="empty-img-box">Gambar Izzah</div>
+                    </div>
+                    <div class="couple-text-details">
+                        NURUL IZZAH BINTI<br>MUHAMAD ZAHIR
+                    </div>
+                </div>
+
+                <!-- Baris Pengantin Lelaki (Kanan) -->
+                <div class="couple-row-block reverse-direction" data-aos="fade-left">
+                    <div class="profile-wooden-frame">
+                        <!-- Tukar ke <img src="omar.jpg"> bila imej dah dimasukkan -->
+                        <div class="empty-img-box">Gambar Omar</div>
+                    </div>
+                    <div class="couple-text-details">
+                        OMAR FAROUQ BIN<br>RAHIM
+                    </div>
+                </div>
+            </div>
+
+            <img src="bottom-flower-border.png" alt="Flower Border" class="flower-border-img" data-aos="fade-in">
+        </section>
+
+        <!-- ================= 3. COUNTDOWN TIME PAGE (Rujukan: Image 4) ================= -->
+        <section style="padding-top: 10px;">
+            <h2 class="section-headline-serif" data-aos="fade-up">MENANTI HARI BAHAGIA</h2>
+            
+            <!-- Struktur Teks Jam Mengikut Formula Canva (Image 4) -->
+            <div class="canva-countdown-display" data-aos="zoom-in" id="live-timer-digits">
+                00:00:00:00
+            </div>
+            <div class="canva-countdown-labels" data-aos="fade-up">
+                <span>Days</span>
+                <span>Hours</span>
+                <span>Mins</span>
+                <span>Secs</span>
+            </div>
+            
+            <img src="couple-vector.png" alt="Faceless Couple Vector" class="illustration-faceless-couple" data-aos="fade-up">
+            <img src="bottom-flower-border.png" alt="Flower Border" class="flower-border-img">
+        </section>
+
+        <!-- ================= 4. ITINERARY TIME PAGE (Rujukan: Image 5) ================= -->
+        <section style="padding-top: 10px;" data-aos="fade-up">
+            <h2 class="huge-section-title">BUTIRAN<br>MAJLIS</h2>
+            
+            <p class="itinerary-sublabel">Tarikh</p>
+            <p class="itinerary-value-text" style="font-weight: 500;">
+                SABTU<br>18 JULAI 2026<br>4 SAFAR 1448 AH
             </p>
-
-            <!-- Susunan Gambar Tetap Tegap Walaupun Tiada Gambar Asset -->
-            <div class="couple-section">
-                <div class="photo-frame frame-bride" data-aos="fade-right" data-aos-delay="200">
-                    <!-- Ganti src="gambar_izzah.jpg" bila dah ready imej -->
-                    <div class="img-placeholder">Gambar Izzah</div>
-                    <div class="name-label">NURUL IZZAH BINTI MUHAMAD ZAHIR</div>
+            
+            <p class="itinerary-sublabel">Aturcara Majlis</p>
+            <div class="canva-vertical-timeline">
+                <div class="timeline-row-item">
+                    <span class="event-time">11:00 AM</span>
+                    <span class="event-name">KETIBAAN TETAMU &<br>JAMUAN MAKAN</span>
                 </div>
-                <div class="photo-frame frame-groom" data-aos="fade-left" data-aos-delay="400">
-                    <!-- Ganti src="omar.jpg" bila dah ready imej -->
-                    <div class="img-placeholder">Gambar Omar</div>
-                    <div class="name-label">OMAR FAROUQ BIN RAHIM</div>
+                <div class="timeline-item timeline-row-item">
+                    <span class="event-time">12:00 PM</span>
+                    <span class="event-name">KETIBAAN PENGANTIN</span>
+                </div>
+                <div class="timeline-item timeline-row-item">
+                    <span class="event-time">4:00 PM</span>
+                    <span class="event-name">MAJLIS SELESAI</span>
                 </div>
             </div>
+            
+            <p class="itinerary-sublabel">Tempat</p>
+            <p class="itinerary-value-text">
+                <a href="#" class="embedded-location-anchor">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</a>
+            </p>
+            
+            <img src="bottom-flower-border.png" alt="Flower Border" class="flower-border-img" style="margin-top: 30px;">
         </section>
 
-        <!-- Countdown -->
-        <section style="padding: 20px;">
-            <h2 data-aos="fade-up" style="font-family: 'Playfair Display'; font-size: 22px; color: #5d6353; font-style: normal; letter-spacing: 2px; text-transform: uppercase;">Menanti Hari Bahagia</h2>
-            <div class="countdown-container" data-aos="zoom-in">
-                <div class="cd-item"><span id="days" class="cd-number">00</span><span class="cd-label">Days</span></div>
-                <div class="cd-item"><span id="hours" class="cd-number">00</span><span class="cd-label">Hours</span></div>
-                <div class="cd-item"><span id="mins" class="cd-number">00</span><span class="cd-label">Mins</span></div>
-                <div class="cd-item"><span id="secs" class="cd-number">00</span><span class="cd-label">Secs</span></div>
-            </div>
-        </section>
-
-        <!-- Event Details -->
+        <!-- ================= 5. FOOTER BLESSING PAGE ================= -->
         <section data-aos="fade-up">
-            <h2 style="font-size: 44px; color: #3b4d3a; line-height: 1; font-family: 'Montserrat'; font-weight: 400; letter-spacing: 1px;">BUTIRAN MAJLIS</h2>
-            <div>
-                <p class="serif" style="font-weight: bold; margin-top: 25px; font-size: 20px;">Tarikh</p>
-                <p style="font-size: 15px; margin-top: 5px; font-weight: 600;">SABTU, 18 JULAI 2026<br>4 SAFAR 1448 AH</p>
-            </div>
-
-            <p class="serif" style="font-weight: bold; margin-top: 25px; font-size: 20px;">Aturcara Majlis</p>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="time">11:00 AM</span>
-                    <span class="event">KETIBAAN TETAMU & JAMUAN MAKAN</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">12:00 PM</span>
-                    <span class="event">KETIBAAN PENGANTIN</span>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">04:00 PM</span>
-                    <span class="event">MAJLIS SELESAI</span>
-                </div>
-            </div>
-
-            <div>
-                <p class="serif" style="font-weight: bold; font-size: 20px;">Tempat</p>
-                <p style="font-size: 14px; margin-top: 5px;"><a href="#" class="location-link">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</a></p>
-            </div>
-        </section>
-
-        <!-- Prayer Text -->
-        <section data-aos="fade-up" style="padding-top: 10px;">
-            <p style="font-size: 13px; line-height: 1.8; font-style: italic; margin-bottom: 20px;">
+            <p class="prayer-blessing-text">
                 YA ALLAH, BERKATILAH PENYATUAN INI, SATUKANLAH HATI MEREKA DALAM KASIH DAN RAHMAT-MU, SERTA KURNIAKANLAH KEBAHAGIAAN YANG BERKEKALAN HINGGA KE SYURGA-MU. AAMIIN YA RABBAL 'ALAMIN.
             </p>
-            <p style="font-size: 11px; font-family: 'Montserrat'; margin-bottom: 5px;">SURAH AN-NABA' AYAT 8:</p>
-            <p class="serif" style="font-style: italic; font-size: 16px; color: var(--maroon);">"Dan Kami menciptakan kamu berpasang-pasangan."</p>
+            <p style="font-size: 11px; font-family: var(--font-sans); margin-bottom: 5px; font-weight: 500;">SURAH AN-NABA' AYAT 8:</p>
+            <p style="font-family: var(--font-serif); font-style: italic; font-size: 16px; color: var(--maroon-text);">"Dan Kami menciptakan kamu berpasang-pasangan."</p>
         </section>
 
-    </div>
+    </div><!-- End Main Wrapper -->
 
-    <!-- Modals Section -->
-    <div id="modal-contact" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-contact')">&larr;</span>
-            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">Hubungi Kami</p>
-            <div class="contact-row">Zahir: 0195788832</div>
-            <div class="contact-row">Harifah: 0194125774</div>
-            <div class="contact-row">Izharshah: 0174908583</div>
-            <div class="contact-row">Alisa: 01118560643</div>
-            <div class="contact-row">Adam: 0146830383</div>
+
+    <!-- ==========================================================================
+       6. SISTEM HALAMAN PENUH OVERLAY DASHBOARD (Klon Image 6, 7, 8, 9)
+       ========================================================================== -->
+
+    <!-- Halaman Penuh: HUBUNGI (Image 6) -->
+    <div id="page-contact" class="fullpage-overlay">
+        <div class="fullpage-content-box">
+            <button class="back-circle-button" onclick="dismissFullPage('page-contact')">&larr;</button>
+            <div class="pink-dashboard-card">
+                <div class="dashboard-card-headline">SILA HUBUNGI NOMBOR DI<br>BAWAH UNTUK PERTANYAAN:</div>
+                <div class="dashboard-contact-list">
+                    <p>Zahir - 0195788832</p>
+                    <p>Harifah - 0194125774</p>
+                    <p>Izharshah - 0174908583</p>
+                    <p>Alisa - 01118560643</p>
+                    <p>Adam - 0146830383</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="modal-rsvp" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-rsvp')">&larr;</span>
-            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">RSVP Kehadiran</p>
-            <p style="margin: 20px 0; font-size: 13px;">Sila sahkan kehadiran anda sebelum 16 JULAI 2026</p>
-            <button class="action-btn">RSVP</button>
+    <!-- Halaman Penuh: RSVP (Image 7) -->
+    <div id="page-rsvp" class="fullpage-overlay">
+        <div class="fullpage-content-box">
+            <button class="back-circle-button" onclick="dismissFullPage('page-rsvp')">&larr;</button>
+            <div class="pink-dashboard-card">
+                <div class="dashboard-card-headline" style="margin-bottom: 10px;">SILA SAHKAN KEHADIRAN ANDA</div>
+                <div class="dashboard-card-headline">SEBELUM 16 JULAI 2026</div>
+                <button class="dashboard-action-trigger" onclick="window.location.href='https://google.form/your-rsvp'">RSVP</button>
+            </div>
         </div>
     </div>
 
-    <div id="modal-gift" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-gift')">&larr;</span>
-            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">HADIAH</p>
-            <img src="maybank-qr.png" alt="Maybank QR" class="qr-img">
-            <p style="font-size: 13px;"><strong>Nurul Izzah Binti Muhamad Zahir</strong></p>
-            <p style="font-size: 12px; margin-top: 5px;">Maybank: 152189260080</p>
+    <!-- Halaman Penuh: HADIAH (Image 8) -->
+    <div id="page-gift" class="fullpage-overlay">
+        <div class="fullpage-content-box">
+            <button class="back-circle-button" onclick="dismissFullPage('page-gift')">&larr;</button>
+            <div class="pink-dashboard-card">
+                <div class="dashboard-card-headline" style="margin-bottom: 30px;">HADIAH</div>
+                <div class="dashboard-qr-wrapper">
+                    <img src="maybank-qr.png" alt="Maybank DuitNow QR">
+                </div>
+                <p style="font-size: 13px; font-weight: 500; margin-top: 15px;">Nurul Izzah Binti Muhammad Zahir</p>
+                <p style="font-size: 12px; opacity: 0.9; margin-top: 5px;">Maybank</p>
+                <p style="font-size: 15px; font-weight: 600; margin-top: 5px; letter-spacing: 0.5px;">152189260080</p>
+            </div>
         </div>
     </div>
 
-    <div id="modal-location" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('modal-location')">&larr;</span>
-            <p style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; font-weight: 600;">Tempat</p>
-            <p style="font-size: 12px; line-height: 1.5; margin-bottom: 15px;">DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH</p>
-            <button class="action-btn" style="margin-bottom: 15px; width: 80%;">Scan Lokasi Majlis</button>
-            <img src="waze-qr.png" alt="Waze QR" class="qr-img" style="width: 140px; height: 140px; margin-top: 0;">
+    <!-- Halaman Penuh: LOKASI (Image 9) -->
+    <div id="page-location" class="fullpage-overlay">
+        <div class="fullpage-content-box">
+            <button class="back-circle-button" onclick="dismissFullPage('page-location')">&larr;</button>
+            <div class="pink-dashboard-card">
+                <div class="dashboard-card-headline" style="margin-bottom: 15px;">Tempat</div>
+                <p style="font-size: 12px; font-family: var(--font-sans); line-height: 1.5; padding: 0 10px;">
+                    DEWAN IMPIAN UNGGUL<br>LOT 2794 KAMPUNG BUKIT BELAH, TIKAM BATU,<br>08600 SUNGAI PETANI, KEDAH
+                </p>
+                <button class="dashboard-action-trigger" onclick="window.location.href='https://waze.com/your-link'">Scan Lokasi Majlis</button>
+                <div class="dashboard-qr-wrapper" style="width: 150px; height: 150px; margin-top: 10px;">
+                    <img src="waze-qr.png" alt="Waze Map QR">
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Background Music & Toggle -->
-    <audio id="bg-music" loop>
+    <!-- SISTEM UTAMA LAGU LATAR -->
+    <audio id="canva-bg-music" loop>
         <source src="background-music.mp3" type="audio/mpeg">
     </audio>
-    <button id="music-toggle">🎵</button>
+    <button id="music-floating-toggle" class="music-floating-toggle">🎵</button>
 
-    <!-- Scripts -->
+
+    <!-- ==========================================================================
+       7. ENGIN JAVASCRIPT LOGIC
+       ========================================================================== -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Mengaktifkan Library AOS Animasi
         AOS.init({ duration: 1000, once: true });
 
-        // Countdown Timer Logic
-        const targetDate = new Date("July 18, 2026 11:00:00").getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const gap = targetDate - now;
-            const second = 1000, minute = second * 60, hour = minute * 60, day = hour * 24;
-
-            const d = Math.floor(gap / day);
-            const h = Math.floor((gap % day) / hour);
-            const m = Math.floor((gap % hour) / minute);
-            const s = Math.floor((gap % minute) / second);
-
-            document.getElementById("days").innerText = d < 10 ? '0' + d : d;
-            document.getElementById("hours").innerText = h < 10 ? '0' + h : h;
-            document.getElementById("mins").innerText = m < 10 ? '0' + m : m;
-            document.getElementById("secs").innerText = s < 10 ? '0' + s : s;
+        // Fungsi Membuka Halaman Panel Penuh (Image 6-9)
+        function displayFullPage(pageId) {
+            document.getElementById(pageId).style.display = "flex";
         }
-        setInterval(updateCountdown, 1000);
 
-        // Modal Functions with scale active
-        function openModal(id) {
-            const m = document.getElementById(id);
-            m.classList.add('active');
+        // Fungsi Menutup Halaman Panel Penuh
+        function dismissFullPage(pageId) {
+            document.getElementById(pageId).style.display = "none";
         }
-        function closeModal(id) {
-            const m = document.getElementById(id);
-            m.classList.remove('active');
-        }
-        window.onclick = function(e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                closeModal(e.target.id);
+
+        // Formula Khas Hitung Masa Countdown Mengikut Gaya Canva (DD:HH:MM:SS)
+        const targetWeddingTimestamp = new Date("July 18, 2026 11:00:00").getTime();
+
+        function runCanvaClock() {
+            const currentTimestamp = new Date().getTime();
+            const timeDifference = targetWeddingTimestamp - currentTimestamp;
+
+            const oneSecond = 1000, oneMinute = 60000, oneHour = 3600000, oneDay = 86400000;
+
+            const days = Math.floor(timeDifference / oneDay);
+            const hours = Math.floor((timeDifference % oneDay) / oneHour);
+            const minutes = Math.floor((timeDifference % oneHour) / oneMinute);
+            const seconds = Math.floor((timeDifference % oneMinute) / oneSecond);
+
+            const displayDays = days < 10 ? '0' + days : days;
+            const displayHours = hours < 10 ? '0' + hours : hours;
+            const displayMins = minutes < 10 ? '0' + minutes : minutes;
+            const displaySecs = seconds < 10 ? '0' + seconds : seconds;
+
+            const timerElement = document.getElementById("live-timer-digits");
+            if (timeDifference > 0) {
+                timerElement.innerText = `${displayDays}:${displayHours}:${displayMins}:${displaySecs}`;
+            } else {
+                timerElement.innerText = "00:00:00:00";
             }
         }
+        setInterval(runCanvaClock, 1000);
 
-        // Music Logic
-        const music = document.getElementById("bg-music");
-        const musicBtn = document.getElementById("music-toggle");
-        let isPlaying = false;
+        // Skrip Pintas Autoplay Lagu Latar Pada Sentuhan Pertama
+        const musicTrack = document.getElementById("canva-bg-music");
+        const musicControllerButton = document.getElementById("music-floating-toggle");
+        let trackPlayingStatus = false;
 
         window.addEventListener('click', () => {
-            if (!isPlaying) {
-                music.play().catch(e => console.log("Playback extension bypass"));
-                isPlaying = true;
-                musicBtn.innerText = "🎵";
+            if (!trackPlayingStatus) {
+                musicTrack.play().catch(err => console.log("Bypass block alert"));
+                trackPlayingStatus = true;
+                musicControllerButton.innerText = "🎵";
             }
         }, { once: true });
 
-        musicBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (isPlaying) {
-                music.pause();
-                musicBtn.innerText = "🔇";
+        musicControllerButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (trackPlayingStatus) {
+                musicTrack.pause();
+                musicControllerButton.innerText = "🔇";
             } else {
-                music.play();
-                musicBtn.innerText = "🎵";
+                musicTrack.play();
+                musicControllerButton.innerText = "🎵";
             }
-            isPlaying = !isPlaying;
+            trackPlayingStatus = !trackPlayingStatus;
         });
     </script>
 </body>
