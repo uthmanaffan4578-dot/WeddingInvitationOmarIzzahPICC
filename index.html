@@ -187,41 +187,35 @@
             text-align: center;
             position: relative;
             
-            /* Kekalkan imej kad kau */
             background-image: url('Background.png');
             background-color: transparent;
             background-repeat: no-repeat;
             background-position: center;
-            background-size: 100% 100%; /* Memastikan imej ikut saiz kotak tulisan */
+            background-size: 100% 100%;
             border: none;
             
-            /* ---- SOLUSI BULATKAN BUCU YANG SELAMAT (BUANG CLIP-PATH) ---- */
-            border-radius: 35px; /* Ini akan buat bucu kad melengkung bevel dengan smooth */
-            overflow: hidden;    /* Potong elemen dalaman yang terkeluar dari sempadan bulat */
+            border-radius: 50px;
+            overflow: hidden;
+            clip-path: inset(0 round 24px); 
             
-            /* Keadaan asal fasa skrol (Kecil & Pudar sikit) */
             transform: scale(0.8);
             opacity: 0.55;
+            filter: drop-shadow(0 4px 8px rgba(128, 51, 60, 0.08));
             
-            /* Guna box-shadow asli untuk elakkan bug rendering 3 layer pada browser phone */
-            box-shadow: 0 4px 15px rgba(128, 51, 60, 0.1); 
+            /* TUKAR KEPADA Z-INDEX LUAR: Supaya kad-kad ni terapung herlok atas video */
             z-index: 2; 
             
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2), 
-                        box-shadow 0.5s ease,
+                        filter 0.5s ease,
                         opacity 0.5s ease;
         }
 
-        /* KEADAAN AKTIF: Bila kad berada tepat di tengah skrin */
         .section-frame.active {
             transform: scale(1.04);
             opacity: 1;
-            
-            /* Bayang depth yang lembut bertema maroon tanpa pecah layer */
-            box-shadow: 0 15px 30px rgba(128, 51, 60, 0.25);
-            z-index: 5; 
+            filter: drop-shadow(0 15px 25px rgba(128, 51, 60, 0.22));
+            z-index: 5; /* Melonjak lagi tinggi ke atas paksi Z masa aktif */
         }
-
         /* HERO INVITATION STYLE */
         .hero-section {
             padding-top: 40px;
