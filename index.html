@@ -447,12 +447,34 @@
             z-index: 1;  /* LAPISAN BELAKANG: Duduk di bawah lubang lutsinar frame bunga */
             position: relative;
         }
+
+        /* 1. GAYA IMEJ BISMILLAH BARU (Ganti teks ﷽ lama) */
+        .bismillah-img {
+            width: 140px; /* Saiz ikut gambar WhatsApp kau */
+            height: auto;
+            margin: 0 auto 15px auto;
+            display: block;
+        }
+
+        /* 2. NAMA IBU BAPA: Ditukar ke Font Amiri */
+        .parents-full-name {
+            font-family: 'Amiri', serif; /* <<< INI AMIRI */
+            font-size: 22px; 
+            color: var(--maroon-text);
+            font-weight: 700;
+            margin: 5px 0;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+
         .couple-text-details {
             padding: 0 15px;
-            font-size: 13px;
-            font-weight: 600;
+            font-family: 'Italianno', cursive; /* <<< Tukar kat sini sahaja bro! */
+            font-size: 38px; /* Kita besarkan sikit ke 38px sbb Italianno ni jenis kurus halus, biar jelas dekat phone */
+            font-weight: 400;
             color: var(--maroon-text);
-            line-height: 1.4;
+            line-height: 1.1;
+            letter-spacing: 0.5px;
         }
 
         /* COUNTDOWN & VECTOR STYLE */
@@ -788,11 +810,13 @@
         <div class="section-frame" data-aos="fade-up" data-aos-duration="1000">
             <section style="padding: 0;">
                 <div>
-                    <div class="bismillah-text">﷽</div>
+                    <!-- KOD BARU: Teks bismillah lama dah diganti dengan imej bismillah.png -->
+                    <img src="bismillah.png" alt="Bismillah Kaligrafi" class="bismillah-img">
+                    
                     <p class="greeting-sub">ASSALAMUALAIKUM W.B.T & SALAM SEJAHTERA</p>
                     
                     <h2 class="parents-full-name">MUHAMAD ZAHIR BIN ABDUL RAZAK</h2>
-                    <p style="font-size: 14px; margin: 2px 0;">&</p>
+                    <p style="font-size: 14px; margin: 2px 0; font-family: var(--font-sans);">&</p>
                     <h2 class="parents-full-name">HARIFAH BINTI MD AMIN</h2>
                     
                     <p class="invitation-body-paragraph">
@@ -807,7 +831,7 @@
                             <img src="gambar_izzah.png" alt="Nurul Izzah">
                         </div>
                         <div class="couple-text-details">
-                            NURUL IZZAH BINTI<br>MUHAMAD ZAHIR
+                            Nurul Izzah Binti<br>Muhamad Zahir
                         </div>
                     </div>
 
@@ -817,7 +841,7 @@
                             <img src="gambar_omar.png" alt="Omar Farouq">
                         </div>
                         <div class="couple-text-details">
-                            OMAR FAROUQ BIN<br>RAHIM
+                            Omar Farouq Bin<br>Rahim
                         </div>
                     </div>
                 </div>
