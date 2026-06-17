@@ -213,11 +213,14 @@
         /* ==========================================================================
            PERBAIKAN SYSTEM FRAME (BUANG TERUS EFEK SHADOW)
            ========================================================================== */
+        /* ==========================================================================
+           PERBAIKAN MUTLAK: KASI BUNGA CORNER MENINDIH BORDER (BUANG OVERFLOW BUG)
+           ========================================================================== */
         .section-frame {
             margin: 25px auto;
             padding: 50px 30px;
             text-align: center;
-            position: relative; /* Wajib ada untuk sistem paksi bunga bucu */
+            position: relative; /* Wajib untuk paksi pseudo-elements bunga */
             
             background-image: url('Background.png');
             background-color: transparent;
@@ -227,7 +230,9 @@
             border: none;
             
             border-radius: 35px;
-            overflow: hidden;   
+            
+            /* ---- KUNCI PEMBETULAN BANTUAN ---- */
+            overflow: visible; /* TUKAR KE VISIBLE: Supaya kelopak bunga boleh keluar menindih border kad! */
             
             transform: scale(0.8);
             opacity: 0.55;
@@ -238,47 +243,37 @@
                         opacity 0.5s ease;
         }
 
-        /* ==========================================================================
-           HIASAN BUNGA CORNER: PAKSA LAYER DUDUK PALING ATAS (FOREGROUND)
-           ========================================================================== */
-        /* 1. Bucu Kiri Atas (::before) */
+        /* 1. Bucu Kiri Atas (::before) - Diperkemaskan koordinat */
         .section-frame::before {
             content: '';
             position: absolute;
-            top: -2px;   /* Ejas rapat sikit dengan bucu */
-            left: -2px;
-            width: 75px;  /* Saiz dinaikkan sikit biar impak nampak atas border */
+            top: -15px;   /* Tolak keluar sikit dari border supaya nampak efek membalut bucu */
+            left: -15px;  /* Tolak keluar sikit */
+            width: 75px;  
             height: 75px;
-            background-image: url('flowercorner.png');
+            background-image: url('sakura.png');
             background-size: contain;
             background-repeat: no-repeat;
-            
-            /* KUNCI UTAMA: Paksa layer duduk paling atas sekali menindih kad */
-            z-index: 10; 
-            
+            z-index: 99;  /* Naikkan layer gila-gila tinggi menindih segala content */
             pointer-events: none;
             transform: rotate(0deg); 
         }
 
-        /* 2. Bucu Kanan Bawah (::after) */
+        /* 2. Bucu Kanan Bawah (::after) - Diperkemaskan koordinat */
         .section-frame::after {
             content: '';
             position: absolute;
-            bottom: -2px;  /* Ejas rapat sikit dengan bucu */
-            right: -2px;
+            bottom: -15px; /* Tolak keluar sikit */
+            right: -15px;  /* Tolak keluar sikit */
             width: 75px;
             height: 75px;
-            background-image: url('flowercorner.png');
+            background-image: url('sakura.png');
             background-size: contain;
             background-repeat: no-repeat;
-            
-            /* KUNCI UTAMA: Paksa layer duduk paling atas sekali menindih kad */
-            z-index: 10; 
-            
+            z-index: 99;   /* Naikkan layer gila-gila tinggi */
             pointer-events: none;
             transform: scaleX(-1) rotate(180deg); 
         }
-
         /* KEADAAN AKTIF: Bila kad berada tepat di tengah skrin */
         .section-frame.active {
             transform: scale(1.04);
