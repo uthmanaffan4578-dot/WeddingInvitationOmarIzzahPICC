@@ -247,10 +247,10 @@
         .section-frame::before {
             content: '';
             position: absolute;
-            top: -15px;   /* Tolak keluar sikit dari border supaya nampak efek membalut bucu */
-            left: -15px;  /* Tolak keluar sikit */
-            width: 75px;  
-            height: 75px;
+            top: -10px;   /* Tolak keluar sikit dari border supaya nampak efek membalut bucu */
+            left: -10px;  /* Tolak keluar sikit */
+            width: 150px;  
+            height: 150px;
             background-image: url('flowercorner.png');
             background-size: contain;
             background-repeat: no-repeat;
@@ -263,16 +263,16 @@
         .section-frame::after {
             content: '';
             position: absolute;
-            bottom: -15px; /* Tolak keluar sikit */
-            right: -15px;  /* Tolak keluar sikit */
-            width: 75px;
-            height: 75px;
+            bottom: -10px; /* Tolak keluar sikit */
+            right: -10px;  /* Tolak keluar sikit */
+            width: 150px;
+            height: 150px;
             background-image: url('flowercorner.png');
             background-size: contain;
             background-repeat: no-repeat;
             z-index: 99;   /* Naikkan layer gila-gila tinggi */
             pointer-events: none;
-            transform: scaleX(-1) rotate(180deg); 
+            transform: scaleX(-1) rotate(0deg); 
         }
         /* KEADAAN AKTIF: Bila kad berada tepat di tengah skrin */
         .section-frame.active {
@@ -443,7 +443,7 @@
             width: 73%;  /* Dikecilkan dari 100% ke 84% supaya ngam masuk dalam garis hitam frame */
             height: 79%; /* Dikecilkan dari 100% ke 84% */
             object-fit: cover;
-            border-radius: 12px; /* Melengkungkan bucu gambar biar sepadan dengan bucu frame */
+            border-radius: 0px; /* Melengkungkan bucu gambar biar sepadan dengan bucu frame */
             z-index: 1;  /* LAPISAN BELAKANG: Duduk di bawah lubang lutsinar frame bunga */
             position: relative;
         }
