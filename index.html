@@ -217,9 +217,8 @@
             margin: 25px auto;
             padding: 50px 30px;
             text-align: center;
-            position: relative;
+            position: relative; /* Wajib ada untuk sistem paksi bunga bucu */
             
-            /* Kekalkan imej kad kau */
             background-image: url('Background.png');
             background-color: transparent;
             background-repeat: no-repeat;
@@ -227,11 +226,9 @@
             background-size: 100% 100%;
             border: none;
             
-            /* Bulatkan bucu kad dengan smooth */
             border-radius: 35px;
             overflow: hidden;   
             
-            /* Keadaan asal fasa skrol (Kecil & Pudar sikit) */
             transform: scale(0.8);
             opacity: 0.55;
             box-shadow: none; 
@@ -239,6 +236,40 @@
             
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.2), 
                         opacity 0.5s ease;
+        }
+
+        /* 1. HIASAN BUNGA: Bucu Kiri Atas (::before) */
+        .section-frame::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            width: 70px;  /* Saiz bunga comel sikit ja */
+            height: 70px;
+            background-image: url('sakura.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10;
+            pointer-events: none;
+            /* Pusingkan sikit angle bunga untuk fit ngam-ngam kat bucu kiri atas */
+            transform: rotate(0deg); 
+        }
+
+        /* 2. HIASAN BUNGA: Bucu Kanan Bawah (::after) */
+        .section-frame::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            width: 70px;
+            height: 70px;
+            background-image: url('sakura.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 10;
+            pointer-events: none;
+            /* Terbalikkan & pusing bunga untuk fit cantik kat bucu kanan bawah */
+            transform: scaleX(-1) rotate(180deg); 
         }
 
         /* KEADAAN AKTIF: Bila kad berada tepat di tengah skrin */
@@ -373,8 +404,13 @@
             height: 140px;
             background: white;
             padding: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            /* Ditambah border border tebal berwarna maroon sebagai bingkai premium */
+            border: 3px solid var(--maroon-text); 
+            border-radius: 20px; /* Buat bucu bingkai gambar melengkung modern */
+            box-shadow: 0 8px 20px rgba(128, 51, 60, 0.15); /* Bayang depth lembut */
             flex-shrink: 0;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
 
         .profile-wooden-frame img {
