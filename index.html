@@ -407,20 +407,34 @@
            BINGKAI GAMBAR PENGANTIN (FIX BUG: GAMBAR KAT BELAKANG FRAME BUNGA)
            ========================================================================== */
         .profile-wooden-frame {
-            width: 155px;  
-            height: 155px;
+            width: 135px;  /* Diturunkan dari 155px ke 135px supaya ada ruang untuk teks */
+            height: 135px; /* Diturunkan dari 155px ke 135px */
             background-color: transparent;
-            position: relative; /* Wajib ada untuk kawalan paksi tindih */
+            position: relative;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: visible; /* Biar daun bunga terkeluar sikit dari bounding box */
+            overflow: visible;
             transition: transform 0.3s ease;
         }
 
         /* TRIK MULTIMEDIA: Kita jadikan frame_bunga.png sebagai pseudo-element ::after */
         /* Cara ni paksa frame duduk kat lapisan paling atas sekali (foreground) */
+        .profile-wooden-frame {
+            width: 135px;  /* Diturunkan dari 155px ke 135px supaya ada ruang untuk teks */
+            height: 135px; /* Diturunkan dari 155px ke 135px */
+            background-color: transparent;
+            position: relative;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: visible;
+            transition: transform 0.3s ease;
+        }
+
+        /* Trik pseudo-element membalut frame bunga */
         .profile-wooden-frame::after {
             content: '';
             position: absolute;
@@ -428,11 +442,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('frame.png'); 
+            background-image: url('frame_bunga.png'); 
             background-size: 100% 100%;
             background-repeat: no-repeat;
             background-position: center;
-            z-index: 2; /* LAPISAN ATAS: Membalut dan menindih bucu gambar */
+            z-index: 2;
             pointer-events: none;
         }
 
@@ -440,13 +454,12 @@
             transform: scale(1.05);
         }
 
-        /* KOD GAMBAR PENGANTIN: Dah dikecilkan mengikut skala permintaan Omar */
         .profile-wooden-frame img {
-            width: 73%;  /* Dikecilkan dari 100% ke 84% supaya ngam masuk dalam garis hitam frame */
-            height: 79%; /* Dikecilkan dari 100% ke 84% */
+            width: 84%;  
+            height: 84%; 
             object-fit: cover;
-            border-radius: 0px; /* Melengkungkan bucu gambar biar sepadan dengan bucu frame */
-            z-index: 1;  /* LAPISAN BELAKANG: Duduk di bawah lubang lutsinar frame bunga */
+            border-radius: 12px; 
+            z-index: 1;  
             position: relative;
         }
 
@@ -470,13 +483,16 @@
         }
 
         .couple-text-details {
-            padding: 0 15px;
+            padding: 0 10px; /* Dikurangkan padding sikit biar tak tolak text jauh sangat */
             font-family: 'Italianno', cursive;
-            font-size: 20px; /* <<< Dah ciut sikit biar ngam sebelah frame bunga kau */
+            font-size: 20px; /* Dinaikkan ke 30px semula sbb ruang dah luas, tulisan akan nampak herlok */
             font-weight: 400;
             color: var(--maroon-text);
-            line-height: 1.2;
+            line-height: 1.1;
             letter-spacing: 0.5px;
+            
+            /* KUNCI UTAMA: Ambil baki ruang kosong skrin sepenuhnya tanpa tersekat */
+            flex: 1; 
         }
 
         /* COUNTDOWN & VECTOR STYLE */
