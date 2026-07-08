@@ -1204,22 +1204,30 @@ CONVENTION CENTRE (PICC),<br>PRESINT 5, PUTRAJAYA</a>
             }
 
             // 3. KOD BARU: AUTO-SCROLL SAMPAI KIAMAT (Tunggu slaid naik sikit baru jalan)
+            // 3. KOD PENYELAMAT IPHONE: Paksa auto-scroll mesra browser Safari
             setTimeout(() => {
-                // Pasang event listeners sedia ada untuk kesan bila jari tetamu mula usik skrin
+                // Pasang event listeners untuk kesan bila jari tetamu mula usik skrin
                 window.addEventListener('touchstart', stopAutoScroll, { passive: true }); // Untuk touch phone
                 window.addEventListener('mousedown', stopAutoScroll, { passive: true });  // Untuk klik mouse PC
                 window.addEventListener('wheel', stopAutoScroll, { passive: true });      // Untuk scroll wheel PC
 
+                // Trik Safari: Paksa window fokus dahulu sebelum jalankan operasi skrol
+                window.focus();
+
                 // Jalankan skrol automatik perlahan tanpa had
                 infiniteScrollInterval = setInterval(() => {
-                    // Semak kalau skrol dah mencecah siling paling bawah website, auto-clear
-                    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                    // Kira siling paling bawah yang universal untuk Android & iOS
+                    const totalHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+                    const currentScroll = window.scrollY || window.pageYOffset;
+
+                    if ((window.innerHeight + currentScroll) >= (totalHeight - 2)) {
                         clearInterval(infiniteScrollInterval);
                     } else {
-                        window.scrollBy(0, 1); // Nilai 1 ni maksudnya skrol gila babat slow dan smooth gila bapak. 
+                        // Guna cara klasik window.scrollBy tanpa smooth parameter yang selalu diblock iPhone
+                        window.scrollBy(0, 1); 
                     }
-                }, 15); // Bergerak setiap 15 milisaat untuk kekalkan frame rate multimedia yang lancar
-            }, 2000); // Mula bergerak tepat selepas 2 saat (sebaik sahaja welcome cover selesai slaid naik)
+                }, 16); // 16ms bersamaan dengan 60fps refresh rate skrin phone, gila lancar
+            }, 2100); // Dilebihkan 100ms selepas overlay selesai slaid naik untuk bypass security thread Safari
         }
 
         // Fungsi Butang Floating Toggle Musik Manual
