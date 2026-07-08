@@ -1180,7 +1180,10 @@ CONVENTION CENTRE (PICC),<br>PRESINT 5, PUTRAJAYA</a>
                 infiniteScrollInterval = null;
                 console.log("Auto-scroll deactivated: User took over control.");
                 
-                // Buang listener lepas dah trigger sekali supaya jimat memori phone
+                // 🚀 TRIK IPHONE: Hidupkan balik smooth scroll untuk kegunaan butang Navigasi bawah
+                document.documentElement.style.scrollBehavior = "smooth";
+                document.body.style.scrollBehavior = "smooth";
+                
                 window.removeEventListener('touchstart', stopAutoScroll);
                 window.removeEventListener('mousedown', stopAutoScroll);
                 window.removeEventListener('wheel', stopAutoScroll);
@@ -1189,7 +1192,6 @@ CONVENTION CENTRE (PICC),<br>PRESINT 5, PUTRAJAYA</a>
 
         // FUNGSI PICUAN: Bila tetamu picit butang Wax Seal Merah
         function bukaSampulSurat() {
-            // 1. Pasang musik lagu Arvian Dwi secara automatik
             if (musicTrack) {
                 musicTrack.play().then(() => {
                     trackPlayingStatus = true;
@@ -1197,37 +1199,37 @@ CONVENTION CENTRE (PICC),<br>PRESINT 5, PUTRAJAYA</a>
                 }).catch(err => console.log("Audio play blocked by browser: ", err));
             }
 
-            // 2. Tolak skrin welcome cover slaid naik ke atas dengan lancar & slow (2 saat)
             const welcomeOverlay = document.getElementById("welcome-cover");
             if (welcomeOverlay) {
                 welcomeOverlay.classList.add("fade-out-page");
             }
 
-            // 3. KOD BARU: AUTO-SCROLL SAMPAI KIAMAT (Tunggu slaid naik sikit baru jalan)
-            // 3. KOD PENYELAMAT IPHONE: Paksa auto-scroll mesra browser Safari
-            setTimeout(() => {
-                // Pasang event listeners untuk kesan bila jari tetamu mula usik skrin
-                window.addEventListener('touchstart', stopAutoScroll, { passive: true }); // Untuk touch phone
-                window.addEventListener('mousedown', stopAutoScroll, { passive: true });  // Untuk klik mouse PC
-                window.addEventListener('wheel', stopAutoScroll, { passive: true });      // Untuk scroll wheel PC
+            // 🚀 KUNCI GERENTI JADI UNTUK IPHONE:
+            // Kita ruyung matikan 'scroll-behavior: smooth' dekat HTML & Body secara paksa
+            document.documentElement.style.scrollBehavior = "auto";
+            document.body.style.scrollBehavior = "auto";
 
-                // Trik Safari: Paksa window fokus dahulu sebelum jalankan operasi skrol
+            setTimeout(() => {
+                window.addEventListener('touchstart', stopAutoScroll, { passive: true });
+                window.addEventListener('mousedown', stopAutoScroll, { passive: true });
+                window.addEventListener('wheel', stopAutoScroll, { passive: true });
+
                 window.focus();
 
-                // Jalankan skrol automatik perlahan tanpa had
                 infiniteScrollInterval = setInterval(() => {
-                    // Kira siling paling bawah yang universal untuk Android & iOS
                     const totalHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
                     const currentScroll = window.scrollY || window.pageYOffset;
 
-                    if ((window.innerHeight + currentScroll) >= (totalHeight - 2)) {
+                    if ((window.innerHeight + currentScroll) >= (totalHeight - 5)) {
                         clearInterval(infiniteScrollInterval);
+                        // Hidupkan balik smooth scroll bila dah sampai bawah sekali
+                        document.documentElement.style.scrollBehavior = "smooth";
                     } else {
-                        // Guna cara klasik window.scrollBy tanpa smooth parameter yang selalu diblock iPhone
+                        // Tolak 1 pixel mentah tanpa kekangan CSS smooth
                         window.scrollBy(0, 1); 
                     }
-                }, 16); // 16ms bersamaan dengan 60fps refresh rate skrin phone, gila lancar
-            }, 2100); // Dilebihkan 100ms selepas overlay selesai slaid naik untuk bypass security thread Safari
+                }, 14); // Di-lajukan sikit ke 14ms biar nampak berseri dekat skrin 120Hz iPhone
+            }, 2100); 
         }
 
         // Fungsi Butang Floating Toggle Musik Manual
